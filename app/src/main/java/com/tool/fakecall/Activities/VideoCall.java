@@ -3,6 +3,7 @@ package com.tool.fakecall.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.databinding.DataBindingUtil;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -13,18 +14,21 @@ import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraDevice;
 import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CaptureRequest;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.util.Log;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
-
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.tool.fakecall.R;
+import com.tool.fakecall.databinding.ActivityVideoCallBinding;
 
 import java.util.Arrays;
 
@@ -37,26 +41,61 @@ public class VideoCall extends AppCompatActivity {
     private CameraCaptureSession cameraCaptureSession;
     private CaptureRequest.Builder captureRequestBuilder;
 
-    private TextureView textureView;
-    private ImageView imageView;
-
-    private Button switchCameraButton;
-    private String currentCameraId;
+    private String currentCameraId,videoUrl;
 
     private Handler backgroundHandler;
     private HandlerThread backgroundThread;
 
+    MediaPlayer mediaPlayer;
+
+    FirebaseStorage storage;
+    StorageReference storageRef;
+
+    ActivityVideoCallBinding videoCallBinding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_video_call);
+        videoCallBinding = DataBindingUtil.setContentView(this, R.layout.activity_video_call);
 
-        textureView = findViewById(R.id.textureView);
-        imageView = findViewById(R.id.imageView);
-        switchCameraButton = findViewById(R.id.tvBackCamera);
+
+
+        storage = FirebaseStorage.getInstance();
+        storageRef = storage.getReference();
+
+        showLoader();
+
+        String folderName = "Ronaldo"; // Folder ka naam jo aapko play karna hai
+
+        StorageReference folderRef = storageRef.child(folderName);
+
+        folderRef.listAll().addOnSuccessListener(listResult -> {
+            for (StorageReference videoRef : listResult.getItems()) {
+                videoRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                    videoUrl = uri.toString();
+                    videoCallBinding.videoView.setVideoURI(Uri.parse(videoUrl));
+                    hideLoader();
+                    videoCallBinding.videoView.start();
+
+                }).addOnFailureListener(e -> {
+                    // Handle error
+                });
+            }
+        }).addOnFailureListener(e -> {
+            // Handle error
+        });
+
+        // Simulate some background work
+        new Handler().postDelayed(() -> {
+            // Hide the progress bar after some delay (simulating the end of background work)
+            hideLoader();
+        }, 2000); // Adjust the delay as per your requirement
+
+
+        playVideoForAMinute();
 
         cameraManager = (CameraManager) getSystemService(CAMERA_SERVICE);
-        textureView.setSurfaceTextureListener(surfaceTextureListener);
+        videoCallBinding.textureView.setSurfaceTextureListener(surfaceTextureListener);
 
         try {
             currentCameraId = getFrontCameraId();
@@ -64,9 +103,30 @@ public class VideoCall extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
-        switchCameraButton.setOnClickListener(view -> {
+        videoCallBinding.tvBackCamera.setOnClickListener(view -> {
             switchCamera();
         });
+    }
+
+    private void showLoader() {
+        videoCallBinding.progressBar.setVisibility(View.VISIBLE);
+    }
+
+    private void hideLoader() {
+        videoCallBinding.progressBar.setVisibility(View.GONE);
+    }
+
+    private void playVideoForAMinute() {
+        new CountDownTimer(60000, 1000) { // 60000 milliseconds (1 minute), 1000 milliseconds interval
+            public void onTick(long millisUntilFinished) {
+                // Yahan pe kuchh nahi karna, agar aap chahte hain toh timer countdown dikha sakte hain
+            }
+
+            public void onFinish() {
+                // Timer khatam hone par video playback ko stop karo
+                videoCallBinding.videoView.stopPlayback();
+            }
+        }.start();
     }
 
     private TextureView.SurfaceTextureListener surfaceTextureListener = new TextureView.SurfaceTextureListener() {
@@ -122,7 +182,7 @@ public class VideoCall extends AppCompatActivity {
     }
 
     private void createCameraPreview() {
-        SurfaceTexture texture = textureView.getSurfaceTexture();
+        SurfaceTexture texture = videoCallBinding.textureView.getSurfaceTexture();
         texture.setDefaultBufferSize(640, 480);
         Surface surface = new Surface(texture);
 
@@ -182,6 +242,12 @@ public class VideoCall extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         startBackgroundThread();
+        if(videoUrl != null){
+            videoCallBinding.videoView.setVideoURI(Uri.parse(videoUrl));
+            videoCallBinding.videoView.start();
+            playVideoForAMinute();
+        }
+
     }
 
     @Override
@@ -207,25 +273,6 @@ public class VideoCall extends AppCompatActivity {
         }
     }
 
-//    private void switchCamera() {
-//        if (cameraDevice != null) {
-//            cameraDevice.close();
-//            cameraDevice = null;
-//        }
-//        try {
-//            String cameraId = getBackCameraId(); // Get the ID of the back camera
-//            if (cameraId != null) {
-//                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-//                    return;
-//                }
-//                cameraManager.openCamera(cameraId, cameraStateCallback, null);
-//            } else {
-//                Toast.makeText(this, "Back camera not found", Toast.LENGTH_SHORT).show();
-//            }
-//        } catch (CameraAccessException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     private void switchCamera() {
         // Close the current camera device
@@ -262,10 +309,6 @@ public class VideoCall extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
-
-
-
 
     private String getBackCameraId() throws CameraAccessException {
         for (String cameraId : cameraManager.getCameraIdList()) {

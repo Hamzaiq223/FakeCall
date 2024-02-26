@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "904538548873",
+    "firebase_url": "https://fakecall-8ecb2-default-rtdb.firebaseio.com",
+    "project_id": "fakecall-8ecb2",
+    "storage_bucket": "fakecall-8ecb2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904538548873:android:451c759be9f1c05a3d7458",
+        "android_client_info": {
+          "package_name": "com.tool.fakecall"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLWz1fiGfLo_74-VokoGQbuh2nkuI2yfY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
