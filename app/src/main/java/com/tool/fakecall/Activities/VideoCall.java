@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
@@ -14,6 +15,7 @@ import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraDevice;
 import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CaptureRequest;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -53,12 +55,31 @@ public class VideoCall extends AppCompatActivity {
 
     ActivityVideoCallBinding videoCallBinding;
 
+    private AudioManager audioManager;
+
+    private boolean isMuted = false;
+
+    private int previousVolume;
+
+    private void toggleMute() {
+        if (isMuted) {
+            // Unmute the device volume
+            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, previousVolume, 0);
+            isMuted = false;
+        } else {
+            // Mute the device volume
+            previousVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
+            isMuted = true;
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         videoCallBinding = DataBindingUtil.setContentView(this, R.layout.activity_video_call);
 
-
+        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
@@ -90,6 +111,11 @@ public class VideoCall extends AppCompatActivity {
             // Hide the progress bar after some delay (simulating the end of background work)
             hideLoader();
         }, 2000); // Adjust the delay as per your requirement
+
+
+        videoCallBinding.btnVolume.setOnClickListener(view -> {
+            toggleMute();
+        });
 
 
         playVideoForAMinute();
