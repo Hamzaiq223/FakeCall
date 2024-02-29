@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
@@ -33,6 +34,8 @@ import com.tool.fakecall.R;
 import com.tool.fakecall.databinding.ActivityVideoCallBinding;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 
 public class VideoCall extends AppCompatActivity {
 
@@ -85,7 +88,76 @@ public class VideoCall extends AppCompatActivity {
         storageRef = storage.getReference();
 
         showLoader();
+        playVideo();
 
+        videoCallBinding.btnVolume.setOnClickListener(view -> {
+            toggleMute();
+        });
+
+
+        playVideoForAMinute();
+
+        cameraManager = (CameraManager) getSystemService(CAMERA_SERVICE);
+        videoCallBinding.textureView.setSurfaceTextureListener(surfaceTextureListener);
+
+        try {
+            currentCameraId = getFrontCameraId();
+        } catch (CameraAccessException e) {
+            throw new RuntimeException(e);
+        }
+
+        videoCallBinding.tvBackCamera.setOnClickListener(view -> {
+            switchCamera();
+        });
+    }
+
+    private void playVideo(){
+        String folderName = "Ronaldo"; // Folder ka naam jo aapko play karna hai
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        int lastPlayedVideoIndex = sharedPreferences.getInt("lastPlayedVideoIndex", -1); // Initialize with -1
+
+        StorageReference folderRef = storageRef.child(folderName);
+
+        folderRef.listAll().addOnSuccessListener(listResult -> {
+            // Get the list of items (videos) in the folder
+            List<StorageReference> videoRefs = listResult.getItems();
+
+            // Check if there are videos in the folder
+            if (!videoRefs.isEmpty()) {
+                // Calculate the index of the next video to play
+                int nextVideoIndex = (lastPlayedVideoIndex + 1) % videoRefs.size();
+
+                // Get the reference of the next video to play
+                StorageReference nextVideoRef = videoRefs.get(nextVideoIndex);
+
+                nextVideoRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                    String videoUrl = uri.toString();
+
+                    // Play the next video
+                    videoCallBinding.videoView.setVideoURI(Uri.parse(videoUrl));
+                    hideLoader();
+                    videoCallBinding.videoView.start();
+
+                    // Update the index of the last played video
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putInt("lastPlayedVideoIndex", nextVideoIndex);
+                    editor.apply();
+                }).addOnFailureListener(e -> {
+                    // Handle error
+                });
+            }
+        }).addOnFailureListener(e -> {
+            // Handle error
+        });
+
+
+        new Handler().postDelayed(() -> {
+            // Hide the progress bar after some delay (simulating the end of background work)
+            hideLoader();
+        }, 2000); // Adjust the delay as per your requirement
+
+    }
+    private void getVideo() {
         String folderName = "Ronaldo"; // Folder ka naam jo aapko play karna hai
 
         StorageReference folderRef = storageRef.child(folderName);
@@ -111,27 +183,6 @@ public class VideoCall extends AppCompatActivity {
             // Hide the progress bar after some delay (simulating the end of background work)
             hideLoader();
         }, 2000); // Adjust the delay as per your requirement
-
-
-        videoCallBinding.btnVolume.setOnClickListener(view -> {
-            toggleMute();
-        });
-
-
-        playVideoForAMinute();
-
-        cameraManager = (CameraManager) getSystemService(CAMERA_SERVICE);
-        videoCallBinding.textureView.setSurfaceTextureListener(surfaceTextureListener);
-
-        try {
-            currentCameraId = getFrontCameraId();
-        } catch (CameraAccessException e) {
-            throw new RuntimeException(e);
-        }
-
-        videoCallBinding.tvBackCamera.setOnClickListener(view -> {
-            switchCamera();
-        });
     }
 
     private void showLoader() {
@@ -268,6 +319,8 @@ public class VideoCall extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         startBackgroundThread();
+        playVideo();
+        showLoader();
         if(videoUrl != null){
             videoCallBinding.videoView.setVideoURI(Uri.parse(videoUrl));
             videoCallBinding.videoView.start();
