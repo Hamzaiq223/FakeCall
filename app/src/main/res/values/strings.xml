@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">FakeCall</string>
     <string name="name">Harry Potter</string>
+    <string name="incoming_video_call">Incoming Video Call</string>
 </resources>

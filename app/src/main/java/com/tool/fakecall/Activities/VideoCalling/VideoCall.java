@@ -1,4 +1,4 @@
-package com.tool.fakecall.Activities;
+package com.tool.fakecall.Activities.VideoCalling;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,7 +34,6 @@ import com.tool.fakecall.R;
 import com.tool.fakecall.databinding.ActivityVideoCallBinding;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 public class VideoCall extends AppCompatActivity {
@@ -156,33 +155,6 @@ public class VideoCall extends AppCompatActivity {
             hideLoader();
         }, 2000); // Adjust the delay as per your requirement
 
-    }
-    private void getVideo() {
-        String folderName = "Ronaldo"; // Folder ka naam jo aapko play karna hai
-
-        StorageReference folderRef = storageRef.child(folderName);
-
-        folderRef.listAll().addOnSuccessListener(listResult -> {
-            for (StorageReference videoRef : listResult.getItems()) {
-                videoRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                    videoUrl = uri.toString();
-                    videoCallBinding.videoView.setVideoURI(Uri.parse(videoUrl));
-                    hideLoader();
-                    videoCallBinding.videoView.start();
-
-                }).addOnFailureListener(e -> {
-                    // Handle error
-                });
-            }
-        }).addOnFailureListener(e -> {
-            // Handle error
-        });
-
-        // Simulate some background work
-        new Handler().postDelayed(() -> {
-            // Hide the progress bar after some delay (simulating the end of background work)
-            hideLoader();
-        }, 2000); // Adjust the delay as per your requirement
     }
 
     private void showLoader() {
@@ -351,7 +323,6 @@ public class VideoCall extends AppCompatActivity {
             Log.e(TAG, "Error closing background thread: " + e.getMessage());
         }
     }
-
 
     private void switchCamera() {
         // Close the current camera device
