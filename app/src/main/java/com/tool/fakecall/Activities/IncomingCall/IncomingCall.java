@@ -51,8 +51,6 @@ public class IncomingCall extends AppCompatActivity {
         imageView = findViewById(R.id.ivImage);
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
-        RippleBackground rippleBackground=(RippleBackground)findViewById(R.id.rippleBG);
-        rippleBackground.startRippleAnimation();
 
         displayImageFromFolder("Ronaldo");
 
@@ -88,7 +86,6 @@ public class IncomingCall extends AppCompatActivity {
 
                 firstImageRef.getDownloadUrl().addOnSuccessListener(uri -> {
                     String imageUrl = uri.toString();
-
 
 //                    Bitmap bitmap = BitmapFactory.decodeFile(imageUrl);
 //                    Bitmap blurredBitmap = BlurBuilder.blur(this, bitmap);

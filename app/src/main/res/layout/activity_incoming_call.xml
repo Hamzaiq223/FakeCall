@@ -65,32 +65,33 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <com.tool.fakecall.Common.RippleBackground
-        android:id="@+id/rippleBG"
+    <ImageView
+        android:id="@+id/ivAccept"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="35dp"
+        android:background="@drawable/circle"
+
+        android:padding="10dp"
+        android:src="@drawable/icon_tick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/btnReturn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="visible"
+        android:layout_marginBottom="50dp"
+        android:text="RETURN"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:textColor="@color/white"
+        android:paddingBottom="10dp"
+        android:visibility="gone"
+        android:background="@drawable/round_background"
+        app:layout_constraintBottom_toBottomOf="@+id/ivImage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:rb_color="#FFFFFFFF"
-        app:rb_duration="3000"
-        app:rb_radius="32dp"
-        app:rb_rippleAmount="6"
-        app:rb_scale="6">
-
-        <ImageView
-            android:id="@+id/ivAccept"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_margin="35dp"
-            android:background="@drawable/circle"
-            android:padding="10dp"
-            android:src="@drawable/icon_tick" />
-
-    </com.tool.fakecall.Common.RippleBackground>
-
-
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -103,13 +104,14 @@
         app:layout_constraintTop_toBottomOf="@+id/ivCancel" />
 
     <TextView
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/accept"
         android:textColor="@color/white"
         android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/rippleBG"
-        app:layout_constraintStart_toStartOf="@+id/rippleBG"
-        app:layout_constraintTop_toBottomOf="@+id/rippleBG" />
+        app:layout_constraintEnd_toEndOf="@+id/ivAccept"
+        app:layout_constraintStart_toStartOf="@+id/ivAccept"
+        app:layout_constraintTop_toBottomOf="@+id/ivAccept" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
