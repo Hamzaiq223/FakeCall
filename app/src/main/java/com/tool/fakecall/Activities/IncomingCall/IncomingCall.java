@@ -22,6 +22,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
+import com.tool.fakecall.Common.AppConstant;
 import com.tool.fakecall.Common.BlurBuilder;
 import com.tool.fakecall.Common.RippleBackground;
 import com.tool.fakecall.R;
@@ -51,6 +52,7 @@ public class IncomingCall extends AppCompatActivity {
         imageView = findViewById(R.id.ivImage);
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
+
 
         displayImageFromFolder("Ronaldo");
 
