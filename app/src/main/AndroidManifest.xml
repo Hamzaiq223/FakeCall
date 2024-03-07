@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
@@ -18,10 +17,12 @@
         android:theme="@style/Theme.FakeCall"
         tools:targetApi="31">
         <activity
+            android:name=".AudioCall"
+            android:exported="false" />
+        <activity
             android:name=".Activities.VideoCalling.VideoCall"
             android:exported="true"
-            android:theme="@style/Theme.Design.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.Design.NoActionBar"></activity>
         <activity
             android:name=".Activities.IncomingCall.IncomingCall"
             android:exported="true"
@@ -35,11 +36,13 @@
         <activity
             android:name=".Activities.MainActivity.MainActivity"
             android:exported="true">
-            <!--            <intent-filter>-->
-            <!--                <action android:name="android.intent.action.MAIN" />-->
 
-            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-            <!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
     </application>
 
