@@ -17,8 +17,14 @@
         android:theme="@style/Theme.FakeCall"
         tools:targetApi="31">
         <activity
-            android:name=".AudioCall"
-            android:exported="false" />
+            android:name=".Activities.AudioCall.AudioCall"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Activities.VideoCalling.VideoCall"
             android:exported="true"
@@ -27,11 +33,7 @@
             android:name=".Activities.IncomingCall.IncomingCall"
             android:exported="true"
             android:theme="@style/Theme.Design.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Activities.MainActivity.MainActivity"
