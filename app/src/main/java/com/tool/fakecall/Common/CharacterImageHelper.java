@@ -44,4 +44,14 @@ public class CharacterImageHelper {
 
         return drawable;
     }
+
+    public static Integer getCharacterImageResourceId(Context context, String characterName) {
+        // Initialize the character images map if not already initialized
+        if (characterImagesMap == null) {
+            initializeCharacterImagesMap();
+        }
+
+        // Retrieve drawable resource ID for the given character name
+        return characterImagesMap != null ? characterImagesMap.get(characterName) : null;
+    }
 }

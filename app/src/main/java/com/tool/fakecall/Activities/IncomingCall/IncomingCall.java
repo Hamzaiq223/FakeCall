@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Build;
@@ -18,6 +19,7 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 import com.tool.fakecall.Common.BlurBuilder;
+import com.tool.fakecall.Common.CharacterImageHelper;
 import com.tool.fakecall.R;
 
 import java.util.List;
@@ -41,8 +43,13 @@ public class IncomingCall extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
+        Integer characterDrawable = CharacterImageHelper.getCharacterImageResourceId(this, "harry_potter");
 
-        displayImageFromFolder("Ronaldo");
+        Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), characterDrawable);
+        if (originalBitmap != null) {
+            Bitmap blurredBitmap = BlurBuilder.blur(this, originalBitmap);
+            imageView.setImageBitmap(blurredBitmap);
+        }
 
         // Initialize the MediaPlayer
         mediaPlayer = MediaPlayer.create(this, R.raw.iphone_ringtone);
@@ -62,55 +69,6 @@ public class IncomingCall extends AppCompatActivity {
         handler.post(vibrationRunnable);
     }
 
-    private void displayImageFromFolder(String folderName) {
-        StorageReference folderRef = storageRef.child(folderName);
-
-        folderRef.listAll().addOnSuccessListener(listResult -> {
-            // Get the list of items (images) in the folder
-            List<StorageReference> imageRefs = listResult.getItems();
-
-            // Check if there are images in the folder
-            if (!imageRefs.isEmpty()) {
-                // Get the reference of the first image in the list
-                StorageReference firstImageRef = imageRefs.get(0); // You can change this logic to select any other image
-
-                firstImageRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                    String imageUrl = uri.toString();
-
-//                    Bitmap bitmap = BitmapFactory.decodeFile(imageUrl);
-//                    Bitmap blurredBitmap = BlurBuilder.blur(this, bitmap);
-//                    imageView.setImageBitmap(blurredBitmap);
-
-                    // Load the image from URL using Picasso (or any other library you prefer)
-                    Picasso.get().load(imageUrl).into(new Target() {
-                        @Override
-                        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                            // Apply blur effect to the bitmap
-
-                            Bitmap blurredBitmap = BlurBuilder.blur(IncomingCall.this, bitmap);
-                            imageView.setImageBitmap(blurredBitmap);
-                        }
-
-                        @Override
-                        public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-                            // Handle failure
-                        }
-
-                        @Override
-                        public void onPrepareLoad(Drawable placeHolderDrawable) {
-                            // Handle loading
-                        }
-                    });
-
-
-                }).addOnFailureListener(e -> {
-                    // Handle error
-                });
-            }
-        }).addOnFailureListener(e -> {
-            // Handle error
-        });
-    }
 
     // Method to play a ringtone from the raw folder
     // Method to start vibrating the device
