@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tool.fakecall.Models.CharactersModel;
@@ -15,15 +16,18 @@ import com.tool.fakecall.R;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.grpc.internal.ConscryptLoader;
 
 public class VideoCharacterAdapter extends RecyclerView.Adapter<VideoCharacterAdapter.ViewHolder> {
 
     private final Context context;
     private final List<CharactersModel> itemList;
+    click click;
 
-    public VideoCharacterAdapter(Context context, List<CharactersModel> itemList) {
+    public VideoCharacterAdapter(Context context, List<CharactersModel> itemList,click click1) {
         this.context = context;
         this.itemList = itemList;
+        this.click = click1;
     }
 
     @NonNull
@@ -37,6 +41,11 @@ public class VideoCharacterAdapter extends RecyclerView.Adapter<VideoCharacterAd
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.userImage.setImageResource(itemList.get(position).getImage());
         holder.userName.setText(itemList.get(position).getName());
+
+        holder.clCharacter.setOnClickListener(view -> {
+            click.onItemClick(itemList.get(position));
+        });
+
     }
 
     @Override
@@ -47,11 +56,17 @@ public class VideoCharacterAdapter extends RecyclerView.Adapter<VideoCharacterAd
     public static class ViewHolder extends RecyclerView.ViewHolder {
         CircleImageView userImage;
         TextView userName;
+        ConstraintLayout clCharacter;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             userImage = itemView.findViewById(R.id.ivUserImage);
             userName = itemView.findViewById(R.id.tvUserName);
+            clCharacter = itemView.findViewById(R.id.clCharacter);
         }
+    }
+
+    public interface click{
+        void onItemClick(CharactersModel charactersModel);
     }
 }
