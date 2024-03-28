@@ -24,10 +24,10 @@ public class ChatQuestionAdapter extends RecyclerView.Adapter<ChatQuestionAdapte
     private final List<QuestionsModel.QuestionsAnswer> itemList;
     click click;
 
-    public ChatQuestionAdapter(Context context, List<QuestionsModel.QuestionsAnswer> itemList) {
+    public ChatQuestionAdapter(Context context, List<QuestionsModel.QuestionsAnswer> itemList,click click1) {
         this.context = context;
         this.itemList = itemList;
-//        this.click = click1;
+        this.click = click1;
     }
 
     @NonNull
@@ -41,9 +41,11 @@ public class ChatQuestionAdapter extends RecyclerView.Adapter<ChatQuestionAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.tvQuestion.setText(itemList.get(position).getQuestion());
 
-//        holder.clQuestion.setOnClickListener(view -> {
-//            click.onItemClick(itemList.get(position));
-//        });
+        holder.clQuestion.setOnClickListener(view -> {
+            click.onItemClick(itemList.get(position));
+            itemList.remove(position);
+            notifyDataSetChanged();
+        });
 
     }
 
@@ -61,11 +63,10 @@ public class ChatQuestionAdapter extends RecyclerView.Adapter<ChatQuestionAdapte
             super(itemView);
             clQuestion = itemView.findViewById(R.id.clQuestion);
             tvQuestion = itemView.findViewById(R.id.tvQuestion);
-
         }
     }
 
     public interface click{
-        void onItemClick(CharactersModel charactersModel);
+        void onItemClick(QuestionsModel.QuestionsAnswer questionsAnswer);
     }
 }

@@ -5,8 +5,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.tool.fakecall.Adapter.ChatQuestionAdapter;
+import com.tool.fakecall.Models.QuestionsAnswer;
 import com.tool.fakecall.Models.QuestionsModel;
 import com.tool.fakecall.R;
 
@@ -19,10 +21,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class Chat extends AppCompatActivity {
+public class Chat extends AppCompatActivity implements ChatQuestionAdapter.click {
 
     ChatQuestionAdapter chatQuestionAdapter;
     RecyclerView rvQuestions;
+
+    ArrayList<QuestionsAnswer> arrayList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +38,7 @@ public class Chat extends AppCompatActivity {
         String characterName = "Santa"; // Specify the character name for which you want to get questions and answers
         ArrayList<QuestionsModel.QuestionsAnswer> questionsAnswers = getQuestionsAnswersForCharacter(this, resourceId, characterName);
 
-        chatQuestionAdapter = new ChatQuestionAdapter(this,questionsAnswers);
+        chatQuestionAdapter = new ChatQuestionAdapter(this,questionsAnswers,this);
         rvQuestions.setAdapter(chatQuestionAdapter);
 
     }
@@ -78,4 +83,8 @@ public class Chat extends AppCompatActivity {
         return questionsAnswers;
     }
 
+    @Override
+    public void onItemClick(QuestionsModel.QuestionsAnswer questionsAnswer) {
+        arrayList.add(new QuestionsAnswer(questionsAnswer.getQuestion(),questionsAnswer.getAnswer()));
+    }
 }
