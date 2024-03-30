@@ -1,12 +1,16 @@
 package com.tool.fakecall.Activities.Chat;
 
+import static android.view.View.GONE;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.tool.fakecall.Adapter.ChatAdapter;
 import com.tool.fakecall.Adapter.ChatQuestionAdapter;
 import com.tool.fakecall.Models.QuestionsAnswer;
 import com.tool.fakecall.Models.QuestionsModel;
@@ -24,7 +28,8 @@ import java.util.ArrayList;
 public class Chat extends AppCompatActivity implements ChatQuestionAdapter.click {
 
     ChatQuestionAdapter chatQuestionAdapter;
-    RecyclerView rvQuestions;
+    RecyclerView rvQuestions,rvChat;
+    ChatAdapter chatAdapter;
 
     ArrayList<QuestionsAnswer> arrayList = new ArrayList<>();
 
@@ -33,6 +38,8 @@ public class Chat extends AppCompatActivity implements ChatQuestionAdapter.click
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
         rvQuestions = findViewById(R.id.rvQuestions);
+        rvChat = findViewById(R.id.rvChat);
+
         Context context = null; // Provide your Android context here
         int resourceId = R.raw.characters; // Replace "your_json_file" with the name of your JSON file in the res/raw folder
         String characterName = "Santa"; // Specify the character name for which you want to get questions and answers
@@ -40,6 +47,9 @@ public class Chat extends AppCompatActivity implements ChatQuestionAdapter.click
 
         chatQuestionAdapter = new ChatQuestionAdapter(this,questionsAnswers,this);
         rvQuestions.setAdapter(chatQuestionAdapter);
+
+        chatAdapter = new ChatAdapter(arrayList,rvChat,rvQuestions);
+        rvChat.setAdapter(chatAdapter);
 
     }
 
@@ -86,5 +96,10 @@ public class Chat extends AppCompatActivity implements ChatQuestionAdapter.click
     @Override
     public void onItemClick(QuestionsModel.QuestionsAnswer questionsAnswer) {
         arrayList.add(new QuestionsAnswer(questionsAnswer.getQuestion(),questionsAnswer.getAnswer()));
+        chatAdapter.notifyDataSetChanged();
+        int lastItemPosition = arrayList.size() - 1;
+        rvChat.scrollToPosition(lastItemPosition);
+        rvChat.smoothScrollToPosition(lastItemPosition);
+
     }
 }

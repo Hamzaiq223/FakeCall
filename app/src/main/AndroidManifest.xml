@@ -29,7 +29,9 @@
 
         <activity
             android:name=".Activities.Chat.Chat"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Design.Light.NoActionBar"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,7 +46,7 @@
         <activity
             android:name=".Activities.IncomingCall.IncomingCall"
             android:exported="true"
-            android:theme="@style/Theme.Design.NoActionBar"></activity>
+            android:theme="@style/Theme.Design.NoActionBar"/>
         <activity
             android:name=".Activities.MainActivity.MainActivity"
             android:exported="true">

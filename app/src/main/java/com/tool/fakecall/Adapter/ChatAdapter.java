@@ -1,106 +1,112 @@
 package com.tool.fakecall.Adapter;
 
-import android.content.Context;
-import android.net.Uri;
+import static android.view.View.GONE;
+
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.tool.fakecall.Models.QuestionsModel;
+import com.tool.fakecall.Models.QuestionsAnswer;
 import com.tool.fakecall.R;
-
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHolder> {
+public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<QuestionsModel.QuestionsAnswer> messageList;
-    private String friend_id;
-    private Context context;
-    private static final int VIEW_TYPE_MESSAGE_SENT = 1;
-    private static final int VIEW_TYPE_MESSAGE_RECEIVED = 2;
+    private static final int VIEW_TYPE_QUESTION = 1;
+    private static final int VIEW_TYPE_ANSWER = 2;
 
-    public ChatAdapter(List<QuestionsModel.QuestionsAnswer> messageList, String friend_id, Context context){
-        this.friend_id = friend_id;
-        this.context = context;
+    private List<QuestionsAnswer> messageList;
+    private Map<Integer, Boolean> answeredMap; // Map to track whether question has been answered
+    private Handler handler;
+    RecyclerView rvChat,rvQuestions;
+
+    public ChatAdapter(List<QuestionsAnswer> messageList, RecyclerView rvChat, RecyclerView rvQuestions) {
         this.messageList = messageList;
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        QuestionsModel.QuestionsAnswer message = messageList.get(position);
-//        if(message.getSender_id().equals(friend_id)) {
-//            return VIEW_TYPE_MESSAGE_RECEIVED;
-//        }
-        return VIEW_TYPE_MESSAGE_SENT;
+        this.answeredMap = new HashMap<>();
+        this.handler = new Handler();
+        this.rvChat = rvChat;
+        this.rvQuestions = rvQuestions;
     }
 
     @NonNull
     @Override
-    public ChatAdapter.MessageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
-        if(viewType == VIEW_TYPE_MESSAGE_SENT){
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message_sent,
-                    parent, false);
+        if (viewType == VIEW_TYPE_QUESTION) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message_sent, parent, false);
+            return new QuestionViewHolder(view);
+        } else {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message_received, parent, false);
+            return new AnswerViewHolder(view);
         }
-        else{
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message_received,
-                    parent, false);
-        }
-        return new MessageViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ChatAdapter.MessageViewHolder holder, int position) {
-        QuestionsModel.QuestionsAnswer message = messageList.get(position);
-//        if(message.getPhotoUrl() == null){
-////            holder.photo_image_view.setVisibility(View.GONE);
-////            holder.setTexts(message);
-//        }
-//        else{
-////            holder.photo_image_view.setImageURI(Uri.parse(message.getPhotoUrl()));
-////            String dateTime = message.getTimestamp() + ", " + message.getDate();
-//            holder.message_text_view.setVisibility(View.GONE);
-//            holder.time_text_view.setText(dateTime);
-//        }
-        holder.setIsRecyclable(false);
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        QuestionsAnswer message = messageList.get(position);
+        if (getItemViewType(position) == VIEW_TYPE_QUESTION) {
+            ((QuestionViewHolder) holder).bind(message.getQuestion(), position);
+            // Check if answer has already been added for this question
+            if (!answeredMap.containsKey(position)) {
+                // Schedule adding answer after 2 seconds
+                handler.postDelayed(() -> addAnswer(position), 2000); // Delay of 2 seconds
+            }
+        } else {
+            ((AnswerViewHolder) holder).bind(message.getAnswer());
+            rvQuestions.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     public int getItemCount() {
-        try{
-            return messageList.size();
-        }
-        catch (NullPointerException e){
-            e.printStackTrace();
-        }
-        return 0;
+        return messageList.size();
     }
 
-    class MessageViewHolder extends RecyclerView.ViewHolder {
+    @Override
+    public int getItemViewType(int position) {
+        return messageList.get(position).getQuestion().endsWith("?") ? VIEW_TYPE_QUESTION : VIEW_TYPE_ANSWER;
+    }
 
-        private TextView message_text_view;
-        private TextView time_text_view;
-        private ImageView photo_image_view;
+    private void addAnswer(int position) {
+        if (position < messageList.size()) {
+            QuestionsAnswer question = messageList.get(position);
+            QuestionsAnswer answer = new QuestionsAnswer("",question.getAnswer());
+            messageList.add(position + 1, answer);
+            answeredMap.put(position, true); // Mark question as answered
+            notifyItemInserted(position + 1);
+            rvChat.scrollToPosition(position + 1);
+        }
+    }
 
+    private static class QuestionViewHolder extends RecyclerView.ViewHolder {
+        private TextView questionTextView;
 
-        public MessageViewHolder(@NonNull View itemView) {
+        QuestionViewHolder(View itemView) {
             super(itemView);
-            message_text_view = itemView.findViewById(R.id.text_message_body);
-            time_text_view = itemView.findViewById(R.id.text_message_time);
-            photo_image_view = itemView.findViewById(R.id.photoImageView);
+            questionTextView = itemView.findViewById(R.id.text_message_body);
         }
 
-//        private void setTexts(QuestionsModel.QuestionsAnswer message) {
-//            message_text_view.setText(message.getMessage());
-//            String dateTime = message.getTimestamp() + ", " + message.getDate();
-//            time_text_view.setText(dateTime);
-//        }
-
+        void bind(String question, int position) {
+            questionTextView.setText(question);
+        }
     }
 
+    private static class AnswerViewHolder extends RecyclerView.ViewHolder {
+        private TextView answerTextView;
+
+        AnswerViewHolder(View itemView) {
+            super(itemView);
+            answerTextView = itemView.findViewById(R.id.text_message_body);
+        }
+
+        void bind(String answer) {
+            answerTextView.setText(answer);
+
+        }
+    }
 }

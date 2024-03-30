@@ -1,6 +1,7 @@
 package com.tool.fakecall.Models;
 
 public class QuestionsAnswer{
+
     public String question;
     public String answer;
 
