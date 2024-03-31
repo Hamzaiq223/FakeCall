@@ -42,9 +42,9 @@ public class ChatQuestionAdapter extends RecyclerView.Adapter<ChatQuestionAdapte
         holder.tvQuestion.setText(itemList.get(position).getQuestion());
 
         holder.clQuestion.setOnClickListener(view -> {
-            click.onItemClick(itemList.get(position));
-            itemList.remove(position);
-            notifyDataSetChanged();
+            click.onItemClick(position,itemList);
+//            itemList.remove(position);
+//            notifyDataSetChanged();
         });
 
     }
@@ -67,6 +67,7 @@ public class ChatQuestionAdapter extends RecyclerView.Adapter<ChatQuestionAdapte
     }
 
     public interface click{
-        void onItemClick(QuestionsModel.QuestionsAnswer questionsAnswer);
+//        QuestionsModel.QuestionsAnswer questionsAnswer
+        void onItemClick(int position ,List<QuestionsModel.QuestionsAnswer> itemList);
     }
 }

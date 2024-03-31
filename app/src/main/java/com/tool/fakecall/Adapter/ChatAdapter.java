@@ -24,13 +24,15 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Map<Integer, Boolean> answeredMap; // Map to track whether question has been answered
     private Handler handler;
     RecyclerView rvChat,rvQuestions;
+    private AnswerSetListener answerSetListener;
 
-    public ChatAdapter(List<QuestionsAnswer> messageList, RecyclerView rvChat, RecyclerView rvQuestions) {
+    public ChatAdapter(List<QuestionsAnswer> messageList, RecyclerView rvChat, RecyclerView rvQuestions, AnswerSetListener listener) {
         this.messageList = messageList;
         this.answeredMap = new HashMap<>();
         this.handler = new Handler();
         this.rvChat = rvChat;
         this.rvQuestions = rvQuestions;
+        this.answerSetListener = listener;
     }
 
     @NonNull
@@ -80,6 +82,11 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             answeredMap.put(position, true); // Mark question as answered
             notifyItemInserted(position + 1);
             rvChat.scrollToPosition(position + 1);
+
+            // Notify activity that an answer is set
+            if (answerSetListener != null) {
+                answerSetListener.onAnswerSet(true);
+            }
         }
     }
 
@@ -108,5 +115,9 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             answerTextView.setText(answer);
 
         }
+    }
+
+    public interface AnswerSetListener {
+        void onAnswerSet(Boolean check);
     }
 }

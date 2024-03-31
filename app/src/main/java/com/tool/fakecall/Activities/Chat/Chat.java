@@ -2,12 +2,15 @@ package com.tool.fakecall.Activities.Chat;
 
 import static android.view.View.GONE;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Toast;
 
 import com.tool.fakecall.Adapter.ChatAdapter;
@@ -24,14 +27,15 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
-public class Chat extends AppCompatActivity implements ChatQuestionAdapter.click {
+public class Chat extends AppCompatActivity implements ChatAdapter.AnswerSetListener,ChatQuestionAdapter.click {
 
     ChatQuestionAdapter chatQuestionAdapter;
     RecyclerView rvQuestions,rvChat;
     ChatAdapter chatAdapter;
-
     ArrayList<QuestionsAnswer> arrayList = new ArrayList<>();
+    Boolean isAdded = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +52,7 @@ public class Chat extends AppCompatActivity implements ChatQuestionAdapter.click
         chatQuestionAdapter = new ChatQuestionAdapter(this,questionsAnswers,this);
         rvQuestions.setAdapter(chatQuestionAdapter);
 
-        chatAdapter = new ChatAdapter(arrayList,rvChat,rvQuestions);
+        chatAdapter = new ChatAdapter(arrayList,rvChat,rvQuestions,this);
         rvChat.setAdapter(chatAdapter);
 
     }
@@ -94,12 +98,21 @@ public class Chat extends AppCompatActivity implements ChatQuestionAdapter.click
     }
 
     @Override
-    public void onItemClick(QuestionsModel.QuestionsAnswer questionsAnswer) {
-        arrayList.add(new QuestionsAnswer(questionsAnswer.getQuestion(),questionsAnswer.getAnswer()));
-        chatAdapter.notifyDataSetChanged();
-        int lastItemPosition = arrayList.size() - 1;
-        rvChat.scrollToPosition(lastItemPosition);
-        rvChat.smoothScrollToPosition(lastItemPosition);
+    public void onItemClick(int position, List<QuestionsModel.QuestionsAnswer> list) {
+        if(isAdded || arrayList.size() == 0){
+            arrayList.add(new QuestionsAnswer(list.get(position).getQuestion(),list.get(position).getAnswer()));
+            chatAdapter.notifyDataSetChanged();
+            list.remove(position);
+            chatQuestionAdapter.notifyDataSetChanged();
+            int lastItemPosition = arrayList.size() - 1;
+            rvChat.scrollToPosition(lastItemPosition);
+            rvChat.smoothScrollToPosition(lastItemPosition);
+            isAdded = false;
+        }
+    }
 
+    @Override
+    public void onAnswerSet(Boolean check) {
+        isAdded = check;
     }
 }
