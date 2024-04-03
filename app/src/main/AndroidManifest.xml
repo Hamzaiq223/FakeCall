@@ -17,28 +17,26 @@
         android:theme="@style/Theme.FakeCall"
         tools:targetApi="31">
         <activity
-            android:name=".Activities.VideoCharacters.VideoCharacters"
+            android:name=".Activities.Languages.Languages"
             android:exported="true" >
-
-        </activity>
-        <activity
-            android:name=".Activities.AudioCall.AudioCall"
-            android:exported="true">
-
-        </activity>
-
-        <activity
-            android:name=".Activities.Chat.Chat"
-            android:exported="true"
-            android:theme="@style/Theme.Design.Light.NoActionBar"
-            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Activities.VideoCharacters.VideoCharacters"
+            android:exported="true"></activity>
+        <activity
+            android:name=".Activities.AudioCall.AudioCall"
+            android:exported="true"></activity>
+        <activity
+            android:name=".Activities.Chat.Chat"
+            android:exported="true"
+            android:theme="@style/Theme.Design.Light.NoActionBar">
 
+        </activity>
         <activity
             android:name=".Activities.VideoCalling.VideoCall"
             android:exported="true"
@@ -46,7 +44,7 @@
         <activity
             android:name=".Activities.IncomingCall.IncomingCall"
             android:exported="true"
-            android:theme="@style/Theme.Design.NoActionBar"/>
+            android:theme="@style/Theme.Design.NoActionBar" />
         <activity
             android:name=".Activities.MainActivity.MainActivity"
             android:exported="true">

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.tool.fakecall.Adapter.ChatAdapter;
 import com.tool.fakecall.Adapter.ChatQuestionAdapter;
+import com.tool.fakecall.Common.SharedHelper;
 import com.tool.fakecall.Models.QuestionsAnswer;
 import com.tool.fakecall.Models.QuestionsModel;
 import com.tool.fakecall.R;
