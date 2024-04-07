@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.tool.fakecall.Adapter.ChatAdapter;
 import com.tool.fakecall.Adapter.ChatQuestionAdapter;
+import com.tool.fakecall.Common.FlashlightController;
 import com.tool.fakecall.Common.SharedHelper;
 import com.tool.fakecall.Models.QuestionsAnswer;
 import com.tool.fakecall.Models.QuestionsModel;
@@ -116,5 +117,12 @@ public class Chat extends AppCompatActivity implements ChatAdapter.AnswerSetList
     @Override
     public void onAnswerSet(Boolean check) {
         isAdded = check;
+        FlashlightController flashlightController = new FlashlightController(this);
+
+        // To turn on the flashlight
+        flashlightController.turnOnFlash();
+
+        // To turn off the flashlight
+        flashlightController.turnOffFlash();
     }
 }
