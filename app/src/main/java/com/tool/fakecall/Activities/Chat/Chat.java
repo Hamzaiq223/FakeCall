@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -39,6 +40,7 @@ public class Chat extends AppCompatActivity implements ChatAdapter.AnswerSetList
     ChatAdapter chatAdapter;
     ArrayList<QuestionsAnswer> arrayList = new ArrayList<>();
     Boolean isAdded = false;
+    private MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,8 @@ public class Chat extends AppCompatActivity implements ChatAdapter.AnswerSetList
         setContentView(R.layout.activity_chat);
         rvQuestions = findViewById(R.id.rvQuestions);
         rvChat = findViewById(R.id.rvChat);
+
+        mediaPlayer = MediaPlayer.create(this, R.raw.iphone_sms_tone_original_mp4);
 
         Context context = null; // Provide your Android context here
         int resourceId = R.raw.characters; // Replace "your_json_file" with the name of your JSON file in the res/raw folder
@@ -115,14 +119,27 @@ public class Chat extends AppCompatActivity implements ChatAdapter.AnswerSetList
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Release MediaPlayer resources
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+    }
+
+    @Override
     public void onAnswerSet(Boolean check) {
         isAdded = check;
         FlashlightController flashlightController = new FlashlightController(this);
-
         // To turn on the flashlight
         flashlightController.turnOnFlash();
-
         // To turn off the flashlight
         flashlightController.turnOffFlash();
+
+        if (mediaPlayer != null) {
+            mediaPlayer.start(); // Start playing the ringtone
+        }
+
     }
 }
