@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.tool.fakecall.Models.LanguageModel;
 import com.tool.fakecall.R;
@@ -19,10 +20,12 @@ public class LanguagesAdapter extends RecyclerView.Adapter<LanguagesAdapter.View
     private final Context context;
     private  List<LanguageModel> list;
     private int selectedItem = RecyclerView.NO_POSITION;
+    click click;
 
-    public LanguagesAdapter(Context context, List<LanguageModel> list) {
+    public LanguagesAdapter(Context context, List<LanguageModel> list, click click) {
         this.context = context;
         this.list = list;
+        this.click = click;
     }
 
     @NonNull
@@ -44,6 +47,11 @@ public class LanguagesAdapter extends RecyclerView.Adapter<LanguagesAdapter.View
             selectedItem = holder.getAdapterPosition();
             notifyDataSetChanged(); // Update UI to reflect the changes
         });
+
+        holder.cvLanguage.setOnClickListener(view -> {
+            holder.rbLanguage.setChecked(position == selectedItem);
+            click.onLanguageClick(list.get(position).getName());
+        });
     }
 
     @Override
@@ -56,13 +64,19 @@ public class LanguagesAdapter extends RecyclerView.Adapter<LanguagesAdapter.View
         TextView tvLanguage;
         RadioButton rbLanguage;
         ImageView ivFlag;
+        CardView cvLanguage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivFlag = itemView.findViewById(R.id.ivCountryFlag);
             rbLanguage = itemView.findViewById(R.id.rbLanguage);
             tvLanguage = itemView.findViewById(R.id.tvLanguage);
+            cvLanguage = itemView.findViewById(R.id.cvLanguage);
         }
+    }
+
+    public interface click{
+        void onLanguageClick(String language);
     }
 
 }

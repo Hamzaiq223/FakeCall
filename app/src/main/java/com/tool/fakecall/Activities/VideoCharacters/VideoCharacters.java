@@ -5,9 +5,13 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.tool.fakecall.Activities.MainActivity.MainActivity;
 import com.tool.fakecall.Adapter.VideoCharacterAdapter;
 import com.tool.fakecall.Models.CharactersModel;
 import com.tool.fakecall.Models.QuestionsModel;
@@ -22,6 +26,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class VideoCharacters extends AppCompatActivity implements VideoCharacterAdapter.click {
 
@@ -44,7 +49,6 @@ public class VideoCharacters extends AppCompatActivity implements VideoCharacter
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,3);
         binding.rvCharacters.setLayoutManager(gridLayoutManager);
         binding.rvCharacters.setAdapter(videoCharacterAdapter);
-
 
     }
 

@@ -5,4 +5,8 @@
     <string name="incoming_video_call">Llamada de video entrante....</string>
     <string name="decline">Rechazar</string>
     <string name="accept">Aceptar</string>
+    <string name="fake_video_call">Llamada de vídeo falsa</string>
+    <string name="fake_message">Mensaje falso</string>
+    <string name="see_more">Ver más</string>
+    <string name="fake_call">Llamada falsa</string>
 </resources>
