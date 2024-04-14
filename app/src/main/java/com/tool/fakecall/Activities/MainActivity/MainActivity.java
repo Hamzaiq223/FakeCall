@@ -7,12 +7,14 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.tool.fakecall.Activities.Languages.Languages;
 import com.tool.fakecall.Adapter.ACAdapter;
 import com.tool.fakecall.Adapter.ChatCharacterAdapter;
 import com.tool.fakecall.Adapter.VCAdapter;
+import com.tool.fakecall.Common.SharedHelper;
 import com.tool.fakecall.Models.CharactersModel;
 import com.tool.fakecall.R;
 import com.tool.fakecall.databinding.ActivityMainBinding;

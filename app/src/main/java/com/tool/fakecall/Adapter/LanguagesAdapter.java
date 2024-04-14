@@ -4,28 +4,39 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.tool.fakecall.Activities.Languages.Languages;
 import com.tool.fakecall.Models.LanguageModel;
 import com.tool.fakecall.R;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
-public class LanguagesAdapter extends RecyclerView.Adapter<LanguagesAdapter.ViewHolder> {
+public class LanguagesAdapter extends RecyclerView.Adapter<LanguagesAdapter.ViewHolder>  {
 
     private final Context context;
-    private  List<LanguageModel> list;
+    private  ArrayList<LanguageModel> list;
+    private ArrayList<LanguageModel> filteredLanguageList;
     private int selectedItem = RecyclerView.NO_POSITION;
     click click;
 
-    public LanguagesAdapter(Context context, List<LanguageModel> list, click click) {
+    public LanguagesAdapter(Context context, ArrayList<LanguageModel> list, click click) {
         this.context = context;
         this.list = list;
+        this.filteredLanguageList = new ArrayList<>(list);
         this.click = click;
+
     }
 
     @NonNull
@@ -37,8 +48,9 @@ public class LanguagesAdapter extends RecyclerView.Adapter<LanguagesAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.tvLanguage.setText(list.get(position).getName());
-        holder.ivFlag.setImageResource(list.get(position).getImage());
+
+        holder.tvLanguage.setText(filteredLanguageList.get(position).getName());
+        holder.ivFlag.setImageResource(filteredLanguageList.get(position).getImage());
 
         // Set the selected state of radio button based on the position
         holder.rbLanguage.setChecked(position == selectedItem);
@@ -50,17 +62,31 @@ public class LanguagesAdapter extends RecyclerView.Adapter<LanguagesAdapter.View
 
         holder.cvLanguage.setOnClickListener(view -> {
             holder.rbLanguage.setChecked(position == selectedItem);
-            click.onLanguageClick(list.get(position).getName());
+            click.onLanguageClick(filteredLanguageList.get(position).getName());
         });
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return filteredLanguageList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public void filter(String text) {
+        filteredLanguageList.clear();
+        if (text.isEmpty()) {
+            filteredLanguageList.addAll(list);
+        } else {
+            for (LanguageModel language : list) {
+                if (language.getName().toLowerCase().contains(text.toLowerCase())) {
+                    filteredLanguageList.add(language);
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
 
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvLanguage;
         RadioButton rbLanguage;
         ImageView ivFlag;

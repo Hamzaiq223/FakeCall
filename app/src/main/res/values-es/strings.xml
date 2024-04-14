@@ -9,4 +9,5 @@
     <string name="fake_message">Mensaje falso</string>
     <string name="see_more">Ver más</string>
     <string name="fake_call">Llamada falsa</string>
+    <string name="search">Buscar</string>
 </resources>

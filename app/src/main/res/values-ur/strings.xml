@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">جعلی کال</string>
+    <string name="name">ہیری پوٹر</string>
+    <string name="incoming_video_call">آنے والی ویڈیو کال....</string>
+    <string name="decline">منظور نہیں کریں</string>
+    <string name="accept">قبول کریں</string>
+    <string name="fake_video_call">جعلی ویڈیو کال</string>
+    <string name="fake_message">جعلی پیغام</string>
+    <string name="see_more">مزید دیکھیں</string>
+    <string name="fake_call">جعلی کال</string>
+    <string name="search">تلاش کریں</string>
+
+</resources>

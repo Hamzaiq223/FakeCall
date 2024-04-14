@@ -4,25 +4,38 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 public class SharedHelper {
-    private static final String PREF_FILE_NAME = "MyPrefs"; // Name of the preference file
-    private SharedPreferences sharedPreferences;
-    private SharedPreferences.Editor editor;
 
-    public SharedHelper(Context context) {
-        sharedPreferences = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
-        editor = sharedPreferences.edit();
-    }
+    private static final String PREF_NAME = "MyPrefs";
 
-    // Method to store a string value
-    public void saveString(String key, String value) {
+    public static void saveString(Context context, String key, String value) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(key, value);
         editor.apply();
     }
 
-    // Method to retrieve a string value
-    public String getString(String key) {
-        return sharedPreferences.getString(key, null);
+
+    public static void saveBoolean(Context context, String key, boolean value) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(key, value);
+        editor.apply();
     }
 
-    // You can add similar methods for other types of data (int, boolean, etc.)
+    public static String getString(Context context, String key, String defaultValue) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(key, defaultValue);
+    }
+
+    public static boolean getBoolean(Context context, String key, boolean defaultValue) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getBoolean(key, defaultValue);
+    }
+
+    public static void clearPreferences(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
+    }
 }
