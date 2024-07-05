@@ -30,7 +30,7 @@ public class Splash extends AppCompatActivity {
             new Languages().changeLanguage(this,language);
         }else{
             startActivity(new Intent(Splash.this, MainActivity.class));
-            finish(); // Finish the splash activity so the user can't go back to it
+            finish();
 
         }
         }, SPLASH_DELAY);

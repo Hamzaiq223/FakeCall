@@ -51,9 +51,9 @@ public class Chat extends AppCompatActivity implements ChatAdapter.AnswerSetList
 
         mediaPlayer = MediaPlayer.create(this, R.raw.iphone_sms_tone_original_mp4);
 
-        Context context = null; // Provide your Android context here
-        int resourceId = R.raw.characters; // Replace "your_json_file" with the name of your JSON file in the res/raw folder
-        String characterName = "Santa"; // Specify the character name for which you want to get questions and answers
+        Context context = null;
+        int resourceId = R.raw.characters;
+        String characterName = "Santa";
         ArrayList<QuestionsModel.QuestionsAnswer> questionsAnswers = getQuestionsAnswersForCharacter(this, resourceId, characterName);
 
         chatQuestionAdapter = new ChatQuestionAdapter(this,questionsAnswers,this);

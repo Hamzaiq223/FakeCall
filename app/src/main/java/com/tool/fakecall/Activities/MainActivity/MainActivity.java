@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.tool.fakecall.Activities.ChatCharacters.ChatCharacters;
 import com.tool.fakecall.Activities.Languages.Languages;
 import com.tool.fakecall.Adapter.ACAdapter;
 import com.tool.fakecall.Adapter.ChatCharacterAdapter;
@@ -22,7 +23,7 @@ import com.tool.fakecall.databinding.ActivityMainBinding;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity implements VCAdapter.click,ACAdapter.click, ChatCharacterAdapter.click{
+public class MainActivity extends AppCompatActivity implements VCAdapter.click,ACAdapter.click, ChatCharacterAdapter.click,View.OnClickListener{
 
     ActivityMainBinding binding;
 
@@ -77,5 +78,14 @@ public class MainActivity extends AppCompatActivity implements VCAdapter.click,A
     @Override
     public void onCharacterClick(CharactersModel charactersModel) {
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.btnChatCharacters:
+                startActivity(new Intent(this, ChatCharacters.class));
+                break;
+        }
     }
 }

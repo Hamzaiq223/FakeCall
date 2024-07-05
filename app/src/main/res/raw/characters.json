@@ -66,72 +66,7 @@
       ]
     },
     {
-      "name": "Harry",
-      "questions_answers": [
-        {
-          "question": "Who is the main character of the Harry Potter series?",
-          "answer": "The main character of the Harry Potter series is Harry Potter himself."
-        },
-        {
-          "question": "Who are Harry Potter's best friends?",
-          "answer": "Harry’s best friends are Hermione Granger and Ron Weasley."
-        },
-        {
-          "question": "What is the name of the school Harry attends in the series?",
-          "answer": "Harry attends Hogwarts School of Witchcraft and Wizardry."
-        },
-        {
-          "question": "Who is the main antagonist in the Harry Potter series?",
-          "answer": "The main antagonist is Lord Voldemort, also known as He-Who-Must-Not-Be-Named."
-        },
-        {
-          "question": "What is the name of Harry’s owl?",
-          "answer": "Harry’s owl is named Hedwig."
-        },
-        {
-          "question": "What are the four Hogwarts houses?",
-          "answer": "The four Hogwarts houses are Gryffindor, Hufflepuff, Ravenclaw, and Slytherin."
-        },
-        {
-          "question": "What is the name of Harry’s godfather?",
-          "answer": "Harry’s godfather is Sirius Black."
-        },
-        {
-          "question": "What magical sport is played on broomsticks in the Harry Potter world?",
-          "answer": "The magical sport played on broomsticks is Quidditch."
-        },
-        {
-          "question": "What are Horcruxes?",
-          "answer": "Horcruxes are objects in which a dark wizard or witch has hidden a fragment of their soul to achieve immortality."
-        },
-        {
-          "question": "What is the significance of the Marauder’s Map?",
-          "answer": "The Marauder’s Map is a magical map that shows a detailed layout of Hogwarts and the location of individuals within the castle."
-        },
-        {
-          "question": "What are the Deathly Hallows?",
-          "answer": "The Deathly Hallows are three powerful magical objects: the Elder Wand, the Resurrection Stone, and the Invisibility Cloak."
-        },
-        {
-          "question": "Who is the headmaster of Hogwarts throughout most of the series?",
-          "answer": "Albus Dumbledore serves as the headmaster of Hogwarts for much of the series."
-        },
-        {
-          "question": "What is the name of the train that takes students to Hogwarts?",
-          "answer": "The train is called the Hogwarts Express."
-        },
-        {
-          "question": "What is the Forbidden Forest, and why is it named so?",
-          "answer": "The Forbidden Forest is a dangerous woodland near Hogwarts, off-limits to students due to its many magical creatures and hazards."
-        },
-        {
-          "question": "What is the significance of the lightning bolt scar on Harry’s forehead?",
-          "answer": "The lightning bolt scar is the result of a failed killing curse cast by Voldemort when Harry was a baby. It is a symbol of Harry’s survival and connection to Voldemort."
-        }
-      ]
-    },
-    {
-      "name":"My_Love",
+      "name":"My Love",
       "questions_answers":[
         {
           "question":"What does my love mean to you?",
@@ -326,7 +261,6 @@
         }
       ]
     },
-
     {
       "name": "Ghost",
       "questions_answers": [
@@ -392,8 +326,6 @@
         }
       ]
     },
-
-
     {
       "name": "Scientists",
       "questions_answers": [
@@ -458,7 +390,136 @@
           "answer": "James Clerk Maxwell."
         }
       ]
+    },
+    {
+      "name": "Mr Bean",
+      "questions_answers": [
+        {
+          "question": "Hey Mr. Bean! How are you doing today?",
+          "answer": "Hmm... I’m doing quite well, thank you! How about you?"
+        },
+        {
+          "question": "I'm good too! So, what are you up to?",
+          "answer": "Just finished playing with my teddy. Now I’m trying to fix my TV. Again."
+        },
+        {
+          "question": "Haha, that sounds like classic Mr. Bean! Have you been on any funny adventures recently?",
+          "answer": "Oh, yes! Tried cooking spaghetti but ended up with noodles everywhere! Teddy wasn’t happy."
+        },
+        {
+          "question": "That must have been a sight to see! Any plans for today?",
+          "answer": "Maybe a nap, or a trip to the park. You never know with me!"
+        },
+        {
+          "question": "Sounds fun! Do you have any advice for staying cheerful?",
+          "answer": "Always look on the funny side of things. And never forget to laugh at yourself!"
+        },
+        {
+          "question": "Great advice! Thanks, Mr. Bean. Have a fantastic day!",
+          "answer": "You too! And remember, if all else fails, just make a funny face!"
+        },
+        {
+          "question": "Mr. Bean, what's your favorite food?",
+          "answer": "Definitely sandwiches! Especially the ones I make myself. They're... unique."
+        },
+        {
+          "question": "What do you like to do on weekends?",
+          "answer": "Spend time with Teddy, of course. Sometimes we go on silly adventures!"
+        },
+        {
+          "question": "Do you have any hobbies?",
+          "answer": "Oh yes! I love painting, but my art tends to get a bit... abstract."
+        },
+        {
+          "question": "What's your favorite movie?",
+          "answer": "I enjoy watching anything with a lot of slapstick comedy. The more ridiculous, the better!"
+        },
+        {
+          "question": "Have you ever had a pet besides Teddy?",
+          "answer": "Well, there was that time I tried to have a goldfish... let’s just say it didn’t end well."
+        },
+        {
+          "question": "What's the most embarrassing thing that has ever happened to you?",
+          "answer": "Oh, there are too many to count! But the time I got stuck in my car window was quite the scene."
+        },
+        {
+          "question": "Do you like to travel?",
+          "answer": "Yes, but my trips never go as planned. Once, I ended up in the wrong country!"
+        },
+        {
+          "question": "What's the best prank you've ever pulled?",
+          "answer": "Switching someone's toothpaste with shaving cream. They weren't happy, but it was hilarious!"
+        },
+        {
+          "question": "If you could be any animal, what would you be?",
+          "answer": "A monkey, for sure! They're cheeky, just like me."
+        }
+      ]
+    },
+    {
+      "name": "Harry",
+      "questions_answers": [
+        {
+          "question": "Hi Harry! How's life at Hogwarts?",
+          "answer": "Hi! Life at Hogwarts is always exciting. There's always something new happening."
+        },
+        {
+          "question": "What's your favorite class?",
+          "answer": "Definitely Defense Against the Dark Arts. It's always interesting and useful."
+        },
+        {
+          "question": "Who's your best friend?",
+          "answer": "Ron and Hermione. We've been through so much together"
+        },
+        {
+          "question": "What's the best spell you know?",
+          "answer": "Expelliarmus! It’s saved my life more times than I can count."
+        },
+        {
+          "question": "Do you like Quidditch?",
+          "answer": "I love it! Playing as Seeker for Gryffindor is the best feeling in the world."
+        },
+        {
+          "question": "What's your favorite magical creature?",
+          "answer": "I really like Hippogriffs. Buckbeak is amazing!"
+        },
+        {
+          "question": "What do you do in your free time?",
+          "answer": "I like to spend time with my friends, and sometimes I go flying on my broomstick."
+        },
+        {
+          "question": " How do you feel about being famous?",
+          "answer": "It's a bit overwhelming, to be honest. But I try to stay focused on what's important."
+        },
+        {
+          "question": "What's your favorite food at Hogwarts?",
+          "answer": "Treacle tart is my favorite dessert! The house elves make it perfectly."
+        },
+        {
+          "question": "Who's your favorite professor?",
+          "answer": "Professor Lupin. He was a great teacher and a good friend."
+        },
+        {
+          "question": "What was your most challenging moment?",
+          "answer": "Facing Voldemort in the graveyard was one of the toughest moments of my life."
+        },
+        {
+          "question": "How do you stay brave in dangerous situations?",
+          "answer": "I think about my friends and what I'm fighting for. That keeps me going."
+        },
+        {
+          "question": "What's your favorite place in Hogwarts?",
+          "answer": "What's your favorite place in Hogwarts?"
+        },
+        {
+          "question": "Do you have any advice for aspiring wizards?",
+          "answer": "Believe in yourself and your friends. And always be prepared for anything!"
+        },
+        {
+          "question": "What's your Patronus?",
+          "answer": "My Patronus is a stag. It’s a symbol of my dad and my strength."
+        }
+      ]
     }
-
   ]
 }
