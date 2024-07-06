@@ -32,7 +32,7 @@ public class ChatCharacters extends AppCompatActivity implements ChatCharacterAd
         arrayList.add(new CharactersModel("C Ronaldo","Ronaldo",R.drawable.c_ronaldo));
         arrayList.add(new CharactersModel("Rose","Rose",R.drawable.rose));
         arrayList.add(new CharactersModel("Lisa","Lisa",R.drawable.lisa));
-        arrayList.add(new CharactersModel("Taylor Swift","Taylor Swift",R.drawable.taylor_swift));
+        arrayList.add(new CharactersModel("Spider Man","Taylor Swift",R.drawable.spider_man));
 
         chatCharacterAdapter  =  new ChatCharacterAdapter(this,arrayList,this);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,3);
