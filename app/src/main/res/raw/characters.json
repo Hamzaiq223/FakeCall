@@ -391,68 +391,68 @@
       ]
     },
     {
-      "name":"Taylor Swift",
+      "name":"Spider Man",
       "questions_answers":[
         {
-          "question":"Hi Taylor! How are you today?",
+          "question":"Hi SpiderMan! How are you today?",
           "answer":"Hi! I'm doing great, thanks for asking. How about you?"
         },
         {
-          "question":"I'm good too! What's your favorite song that you've written?",
-          "answer":"That's a tough one! I have a special place in my heart for \"All Too Well."
+          "question":"How did you become Spider-Man?",
+          "answer":"I was bitten by a radioactive spider during a school field trip. The next day, I woke up with amazing powers!"
         },
         {
-          "question":"Who are your musical inspirations?",
-          "answer":"I’ve always been inspired by artists like Shania Twain, The Chicks, and Bruce Springsteen."
+          "question":"What powers do you have?",
+          "answer":" I have superhuman strength, agility, the ability to cling to walls, and a \"spider-sense\" that warns me of danger. Oh, and I can shoot webs too!"
         },
         {
-          "question":"What's your favorite album you've released?",
-          "answer":"Every album is special to me, but \"Folklore\" was a unique creative journey."
+          "question":"Who is your alter ego?",
+          "answer":"My alter ego is Peter Parker, a high school student (or sometimes a college student or photographer, depending on the story)."
         },
         {
-          "question":"Do you have any pre-show rituals?",
-          "answer":"I always warm up my voice, do some stretches, and have a quiet moment to center myself."
+          "question":"Do you have a mentor or someone who inspired you?",
+          "answer":"My Uncle Ben was a huge inspiration. He taught me that \"with great power comes great responsibility.\""
         },
         {
-          "question":"What's your favorite thing to do when you're not making music?",
-          "answer":"I love reading, baking, and spending time with my cats."
+          "question":"Who are some of your biggest enemies?",
+          "answer":"Some of my biggest enemies are the Green Goblin, Doctor Octopus, Venom, and the Vulture, to name a few."
         },
         {
-          "question":"How do you handle writer's block?",
-          "answer":"I take a break, go for a walk, or try to experience something new to get inspired."
+          "question":"Do you work alone or do you have partners?",
+          "answer":"I often work alone, but I’ve teamed up with other superheroes like the Avengers and the Fantastic Four."
         },
         {
-          "question":"What's your favorite place to perform?",
-          "answer":"There are so many amazing places, but playing in my hometown of Nashville is always special."
+          "question":"How do you keep your identity a secret?",
+          "answer":"I wear a mask and try to keep my personal life separate from my superhero duties. It's not always easy!"
         },
         {
-          "question":"Do you have a favorite lyric from your songs?",
-          "answer":"One of my favorites is from \"Lover\": \"With every guitar string scar on my hand, I take this magnetic force of a man to be my lover.\""
+          "question":"What is your favorite thing about being Spider-Man?",
+          "answer":"Helping people and knowing that I can make a difference is the best part of being Spider-Man."
         },
         {
-          "question":"What's the best advice you've ever received?",
-          "answer":"To always stay true to myself and my music, no matter what."
+          "question":"What’s the hardest part about being a superhero?",
+          "answer":"Balancing my normal life with my responsibilities as Spider-Man. It can be tough to keep everyone I care about safe."
         },
         {
-          "question":"How do you stay grounded with all the fame?",
-          "answer":"My family, friends, and fans keep me grounded. Plus, my cats help a lot!"
+          "question":"Do you have any superhero friends?\n",
+          "answer":"Yes! I've teamed up with heroes like Iron Man, Captain America, and the rest of the Avengers."
         },
         {
-          "question":"What's your favorite movie?",
-          "answer":"I love romantic comedies! \"Love Actually\" is a favorite"
+          "question":"How do you make your web fluid?",
+          "answer":"I designed and created my own web fluid and web-shooters in my lab. It took a lot of trial and error!"
         },
         {
-          "question":"Do you have any hidden talents?",
-          "answer":"I can make a pretty good batch of cookies and I'm quite good at crafting."
+          "question":"What do you do when you're not fighting crime?",
+          "answer":"When I'm not Spider-Man, I try to keep up with my studies, spend time with friends, and work as a photographer."
         },
         {
-          "question": "What's your favorite memory from your tours?",
-          "answer": "Meeting fans from around the world and seeing their faces light up during my performances is unforgettable."
+          "question": "How do you stay in shape for all the crime-fighting?",
+          "answer": "My spider powers give me enhanced strength and agility, but I still practice acrobatics and train to stay sharp."
         },
 
         {
-          "question":"What message do you hope to share through your music?",
-          "answer":"I hope my music inspires people to be their authentic selves and to know that they're never alone in what they're feeling."
+          "question":"Do you have any weaknesses?",
+          "answer":"Aside from being human with normal vulnerabilities, some of my enemies have developed ways to counter my powers, and personal losses can be tough."
         }
       ]
     },

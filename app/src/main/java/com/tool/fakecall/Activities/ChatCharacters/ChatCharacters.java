@@ -6,12 +6,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.GridLayout;
 
 import com.tool.fakecall.Adapter.ChatCharacterAdapter;
 import com.tool.fakecall.Models.CharactersModel;
 import com.tool.fakecall.R;
-import com.tool.fakecall.databinding.ActivityChatCharactersBinding;
 
 import java.util.ArrayList;
 
@@ -30,9 +28,13 @@ public class ChatCharacters extends AppCompatActivity implements ChatCharacterAd
 
         arrayList = new ArrayList<>();
         arrayList.add(new CharactersModel("C Ronaldo","Ronaldo",R.drawable.c_ronaldo));
-        arrayList.add(new CharactersModel("Rose","Rose",R.drawable.rose));
-        arrayList.add(new CharactersModel("Lisa","Lisa",R.drawable.lisa));
-        arrayList.add(new CharactersModel("Spider Man","Taylor Swift",R.drawable.spider_man));
+        arrayList.add(new CharactersModel("Hashim Alma","Hashim Amla",R.drawable.hashim_amla));
+        arrayList.add(new CharactersModel("Leo Messi","Messi",R.drawable.leo_messi));
+        arrayList.add(new CharactersModel("Spider Man","Spider Man",R.drawable.spider_man));
+        arrayList.add(new CharactersModel("Mr Bean","Mr Bean",R.drawable.mr_bean));
+        arrayList.add(new CharactersModel("Ghost","Ghost",R.drawable.ghost));
+        arrayList.add(new CharactersModel("Beiber","Beiber",R.drawable.justin_beiber));
+        arrayList.add(new CharactersModel("Harry Potter","Harry",R.drawable.harry_potter));
 
         chatCharacterAdapter  =  new ChatCharacterAdapter(this,arrayList,this);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,3);
