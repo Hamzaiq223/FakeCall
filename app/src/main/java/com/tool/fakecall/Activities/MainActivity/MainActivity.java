@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements VCAdapter.click,A
         arrayList.add(new CharactersModel("C Ronaldo","Ronaldo",R.drawable.c_ronaldo));
         arrayList.add(new CharactersModel("Rose","Rose",R.drawable.rose));
         arrayList.add(new CharactersModel("Lisa","Lisa",R.drawable.lisa));
-        arrayList.add(new CharactersModel("Taylor Swift","Taylor Swift",R.drawable.taylor_swift));
+        arrayList.add(new CharactersModel("Spider Man","Spider Man",R.drawable.spider_man));
 
         vcAdapter = new VCAdapter(this,arrayList,this);
         binding.rvVideoCall.setAdapter(vcAdapter);

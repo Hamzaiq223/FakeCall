@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.tool.fakecall.Activities.Chat.Chat;
 import com.tool.fakecall.Adapter.ChatCharacterAdapter;
 import com.tool.fakecall.Models.CharactersModel;
 import com.tool.fakecall.R;
+import com.tool.fakecall.databinding.ActivityChatCharactersBinding;
 
 import java.util.ArrayList;
 
@@ -24,6 +27,7 @@ public class ChatCharacters extends AppCompatActivity implements ChatCharacterAd
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_characters);
+
         binding = DataBindingUtil.setContentView(this,R.layout.activity_chat_characters);
 
         arrayList = new ArrayList<>();
@@ -45,7 +49,7 @@ public class ChatCharacters extends AppCompatActivity implements ChatCharacterAd
 
     @Override
     public void onCharacterClick(CharactersModel charactersModel) {
-
+        startActivity(new Intent(this, Chat.class).putExtra("character_name",charactersModel.getCode()).putExtra("character_image",charactersModel.getImage()));
     }
 
     @Override

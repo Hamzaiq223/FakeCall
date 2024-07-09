@@ -4,6 +4,7 @@ import static android.view.View.GONE;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
@@ -22,6 +23,7 @@ import com.tool.fakecall.Common.SharedHelper;
 import com.tool.fakecall.Models.QuestionsAnswer;
 import com.tool.fakecall.Models.QuestionsModel;
 import com.tool.fakecall.R;
+import com.tool.fakecall.databinding.ActivityChatBinding;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,10 +35,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Chat extends AppCompatActivity implements ChatAdapter.AnswerSetListener,ChatQuestionAdapter.click {
+public class Chat extends AppCompatActivity implements ChatAdapter.AnswerSetListener,ChatQuestionAdapter.click,View.OnClickListener {
 
+    ActivityChatBinding binding;
     ChatQuestionAdapter chatQuestionAdapter;
-    RecyclerView rvQuestions,rvChat;
     ChatAdapter chatAdapter;
     ArrayList<QuestionsAnswer> arrayList = new ArrayList<>();
     Boolean isAdded = false;
@@ -45,22 +47,26 @@ public class Chat extends AppCompatActivity implements ChatAdapter.AnswerSetList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
-        rvQuestions = findViewById(R.id.rvQuestions);
-        rvChat = findViewById(R.id.rvChat);
+//        setContentView(R.layout.activity_chat);
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_chat);
+
 
         mediaPlayer = MediaPlayer.create(this, R.raw.iphone_sms_tone_original_mp4);
 
-        Context context = null;
         int resourceId = R.raw.characters;
-        String characterName = "Santa";
+        String characterName = getIntent().getStringExtra("character_name");
+        int image = getIntent().getIntExtra("character_image",0);
+
+        binding.ivImage.setImageResource(image);
+        binding.tvName.setText(characterName);
+
         ArrayList<QuestionsModel.QuestionsAnswer> questionsAnswers = getQuestionsAnswersForCharacter(this, resourceId, characterName);
 
         chatQuestionAdapter = new ChatQuestionAdapter(this,questionsAnswers,this);
-        rvQuestions.setAdapter(chatQuestionAdapter);
+        binding.rvQuestions.setAdapter(chatQuestionAdapter);
 
-        chatAdapter = new ChatAdapter(arrayList,rvChat,rvQuestions,this);
-        rvChat.setAdapter(chatAdapter);
+        chatAdapter = new ChatAdapter(arrayList,binding.rvChat,binding.rvQuestions,this);
+        binding.rvChat.setAdapter(chatAdapter);
 
     }
 
@@ -112,8 +118,8 @@ public class Chat extends AppCompatActivity implements ChatAdapter.AnswerSetList
             list.remove(position);
             chatQuestionAdapter.notifyDataSetChanged();
             int lastItemPosition = arrayList.size() - 1;
-            rvChat.scrollToPosition(lastItemPosition);
-            rvChat.smoothScrollToPosition(lastItemPosition);
+            binding.rvChat.scrollToPosition(lastItemPosition);
+            binding.rvChat.smoothScrollToPosition(lastItemPosition);
             isAdded = false;
         }
     }
@@ -141,5 +147,14 @@ public class Chat extends AppCompatActivity implements ChatAdapter.AnswerSetList
             mediaPlayer.start(); // Start playing the ringtone
         }
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.ivBack:
+                finish();
+                break;
+        }
     }
 }
