@@ -54,6 +54,11 @@ public class ChatCharacters extends AppCompatActivity implements ChatCharacterAd
 
     @Override
     public void onClick(View v) {
+         switch (v.getId()){
+             case R.id.ivBack:
+                 finish();
+                 break;
 
+         }
     }
 }

@@ -10,4 +10,5 @@
     <string name="fake_call">Fake Call</string>
     <string name="search">Search</string>
     <string name="fake_chat">Fake Chat</string>
+    <string name="return_">Return</string>
 </resources>

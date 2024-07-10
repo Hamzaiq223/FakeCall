@@ -8,7 +8,7 @@
     tools:context=".Activities.ChatCharacters.ChatCharacters">
 
     <ImageView
-        android:id="@+id/icBack"
+        android:id="@+id/ivBack"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:onClick="onClick"
@@ -27,10 +27,10 @@
         android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/icBack"
+        app:layout_constraintBottom_toBottomOf="@+id/ivBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/icBack" />
+        app:layout_constraintTop_toTopOf="@+id/ivBack" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvChatCharacters"

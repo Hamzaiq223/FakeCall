@@ -50,7 +50,6 @@ public class Chat extends AppCompatActivity implements ChatAdapter.AnswerSetList
 //        setContentView(R.layout.activity_chat);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_chat);
 
-
         mediaPlayer = MediaPlayer.create(this, R.raw.iphone_sms_tone_original_mp4);
 
         int resourceId = R.raw.characters;
@@ -144,7 +143,7 @@ public class Chat extends AppCompatActivity implements ChatAdapter.AnswerSetList
         flashlightController.turnOffFlash();
 
         if (mediaPlayer != null) {
-            mediaPlayer.start(); // Start playing the ringtone
+            mediaPlayer.start();
         }
 
     }
