@@ -30,13 +30,15 @@ import android.view.View;
 import android.widget.Toast;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.tool.fakecall.Base.BaseActivity;
 import com.tool.fakecall.R;
 import com.tool.fakecall.databinding.ActivityVideoCallBinding;
 
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 
-public class VideoCall extends AppCompatActivity {
+public class VideoCall extends BaseActivity {
 
     private static final int REQUEST_CAMERA_PERMISSION = 200;
     private static final String TAG = "CameraActivity";

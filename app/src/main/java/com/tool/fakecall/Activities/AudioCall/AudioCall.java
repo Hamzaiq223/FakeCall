@@ -12,6 +12,7 @@ import android.os.Handler;
 
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.tool.fakecall.Base.BaseActivity;
 import com.tool.fakecall.R;
 import com.tool.fakecall.databinding.ActivityAudioCallBinding;
 
@@ -21,7 +22,7 @@ import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class AudioCall extends AppCompatActivity {
+public class AudioCall extends BaseActivity {
 
     private MediaPlayer mediaPlayer;
     private boolean isTimerRunning = false;

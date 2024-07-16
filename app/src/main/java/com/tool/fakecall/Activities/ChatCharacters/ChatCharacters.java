@@ -13,13 +13,14 @@ import android.view.Window;
 
 import com.tool.fakecall.Activities.Chat.Chat;
 import com.tool.fakecall.Adapter.ChatCharacterAdapter;
+import com.tool.fakecall.Base.BaseActivity;
 import com.tool.fakecall.Models.CharactersModel;
 import com.tool.fakecall.R;
 import com.tool.fakecall.databinding.ActivityChatCharactersBinding;
 
 import java.util.ArrayList;
 
-public class ChatCharacters extends AppCompatActivity implements ChatCharacterAdapter.click, View.OnClickListener {
+public class ChatCharacters extends BaseActivity implements ChatCharacterAdapter.click, View.OnClickListener {
 
     ArrayList<CharactersModel> arrayList;
 
@@ -30,14 +31,6 @@ public class ChatCharacters extends AppCompatActivity implements ChatCharacterAd
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_characters);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.getDecorView().setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
-                            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-            window.setStatusBarColor(Color.TRANSPARENT);
-        }
 
 
         binding = DataBindingUtil.setContentView(this,R.layout.activity_chat_characters);

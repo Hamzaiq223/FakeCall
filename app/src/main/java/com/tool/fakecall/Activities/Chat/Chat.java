@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.tool.fakecall.Adapter.ChatAdapter;
 import com.tool.fakecall.Adapter.ChatQuestionAdapter;
+import com.tool.fakecall.Base.BaseActivity;
 import com.tool.fakecall.Common.FlashlightController;
 import com.tool.fakecall.Common.SharedHelper;
 import com.tool.fakecall.Models.QuestionsAnswer;
@@ -35,7 +36,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Chat extends AppCompatActivity implements ChatAdapter.AnswerSetListener,ChatQuestionAdapter.click,View.OnClickListener {
+public class Chat extends BaseActivity implements ChatAdapter.AnswerSetListener,ChatQuestionAdapter.click,View.OnClickListener {
 
     ActivityChatBinding binding;
     ChatQuestionAdapter chatQuestionAdapter;

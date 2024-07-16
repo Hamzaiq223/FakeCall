@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.tool.fakecall.Activities.MainActivity.MainActivity;
 import com.tool.fakecall.Adapter.LanguagesAdapter;
+import com.tool.fakecall.Base.BaseActivity;
 import com.tool.fakecall.Common.SharedHelper;
 import com.tool.fakecall.Models.LanguageModel;
 import com.tool.fakecall.R;
@@ -23,7 +24,7 @@ import com.tool.fakecall.databinding.ActivityLanguagesBinding;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class Languages extends AppCompatActivity implements LanguagesAdapter.click {
+public class Languages extends BaseActivity implements LanguagesAdapter.click {
 
     ActivityLanguagesBinding binding ;
     ArrayList<LanguageModel> arrayList = new ArrayList<>();

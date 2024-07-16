@@ -18,13 +18,14 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
+import com.tool.fakecall.Base.BaseActivity;
 import com.tool.fakecall.Common.BlurBuilder;
 import com.tool.fakecall.Common.CharacterImageHelper;
 import com.tool.fakecall.R;
 
 import java.util.List;
 
-public class IncomingCall extends AppCompatActivity {
+public class IncomingCall extends BaseActivity {
 
     FirebaseStorage storage;
     StorageReference storageRef;

@@ -16,4 +16,5 @@
     <string name="vibration">Vibration</string>
     <string name="flash">Flash</string>
     <string name="languages">Languages</string>
+    <string name="rate">Rate</string>
 </resources>

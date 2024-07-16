@@ -25,6 +25,7 @@ import com.tool.fakecall.Activities.Languages.Languages;
 import com.tool.fakecall.Adapter.ACAdapter;
 import com.tool.fakecall.Adapter.ChatCharacterAdapter;
 import com.tool.fakecall.Adapter.VCAdapter;
+import com.tool.fakecall.Base.BaseActivity;
 import com.tool.fakecall.Common.SharedHelper;
 import com.tool.fakecall.Models.CharactersModel;
 import com.tool.fakecall.R;
@@ -33,7 +34,7 @@ import com.tool.fakecall.databinding.ActivityMainBinding;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity implements VCAdapter.click,ACAdapter.click, ChatCharacterAdapter.click,View.OnClickListener{
+public class MainActivity extends BaseActivity implements VCAdapter.click,ACAdapter.click, ChatCharacterAdapter.click,View.OnClickListener{
 
     ActivityMainBinding binding;
 
@@ -94,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements VCAdapter.click,A
         ratingAlertDialog.setCancelable(false);
 
         // Find views
-//        ImageView ivVolume = dialogView.findViewById(R.id.ivVolume);
+        ImageView ivClose = dialogView.findViewById(R.id.ivClose);
 //        ImageView ivVibration = dialogView.findViewById(R.id.ivVibation);
 //        ImageView ivFlash = dialogView.findViewById(R.id.ivFlash);
 //        TextView tvLanguage = dialogView.findViewById(R.id.tvLanguage);
@@ -104,6 +105,8 @@ public class MainActivity extends AppCompatActivity implements VCAdapter.click,A
         boolean volume = SharedHelper.getBoolean(this, "volume_off", false);
         boolean vibration = SharedHelper.getBoolean(this, "vibration_off", false);
         boolean flash = SharedHelper.getBoolean(this, "flash_off", false);
+
+        ivClose.setOnClickListener(v -> {ratingAlertDialog.dismiss();});
 
 //        if (volume) {
 //            ivVolume.setImageResource(R.drawable.sound_off);
@@ -202,9 +205,7 @@ public class MainActivity extends AppCompatActivity implements VCAdapter.click,A
     @Override
     public void onClick(View v) {
         switch(v.getId()){
-            case R.id.btnChatCharacters:
-                startActivity(new Intent(this, ChatCharacters.class));
-                break;
+
         }
     }
 }

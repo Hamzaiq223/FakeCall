@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.tool.fakecall.Activities.MainActivity.MainActivity;
 import com.tool.fakecall.Adapter.VideoCharacterAdapter;
+import com.tool.fakecall.Base.BaseActivity;
 import com.tool.fakecall.Models.CharactersModel;
 import com.tool.fakecall.Models.QuestionsModel;
 import com.tool.fakecall.R;
@@ -28,7 +29,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class VideoCharacters extends AppCompatActivity implements VideoCharacterAdapter.click {
+public class VideoCharacters extends BaseActivity implements VideoCharacterAdapter.click {
 
     ActivityVideoCharactersBinding binding;
     ArrayList<CharactersModel> arrayList;
