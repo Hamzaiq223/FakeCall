@@ -11,10 +11,11 @@
 
     <ImageView
         android:id="@+id/btnSettings"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:padding="10dp"
         android:src="@drawable/setting"
-        android:layout_marginEnd="15dp"
+
         android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -73,6 +74,7 @@
                 android:id="@+id/lMoreVCharacters"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
+                android:onClick="onClick"
                 android:layout_marginHorizontal="10dp"
                 android:background="@drawable/circular_background"
                 app:layout_constraintBottom_toBottomOf="@+id/rvVideoCall"
@@ -136,6 +138,7 @@
                 android:id="@+id/lMoreCCharacters"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
+                android:onClick="onClick"
                 android:layout_marginHorizontal="10dp"
                 android:background="@drawable/circular_background"
                 app:layout_constraintBottom_toBottomOf="@+id/rvChat"
@@ -201,6 +204,7 @@
                 android:id="@+id/lMoreACharacters"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
+                android:onClick="onClick"
                 android:layout_marginHorizontal="10dp"
                 android:background="@drawable/circular_background"
                 app:layout_constraintBottom_toBottomOf="@+id/rvAudioCall"

@@ -20,8 +20,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.tool.fakecall.Activities.AudioCharacters.AudioCharacters;
+import com.tool.fakecall.Activities.Chat.Chat;
 import com.tool.fakecall.Activities.ChatCharacters.ChatCharacters;
+import com.tool.fakecall.Activities.IncomingCall.IncomingCall;
 import com.tool.fakecall.Activities.Languages.Languages;
+import com.tool.fakecall.Activities.VideoCharacters.VideoCharacters;
 import com.tool.fakecall.Adapter.ACAdapter;
 import com.tool.fakecall.Adapter.ChatCharacterAdapter;
 import com.tool.fakecall.Adapter.VCAdapter;
@@ -51,27 +55,21 @@ public class MainActivity extends BaseActivity implements VCAdapter.click,ACAdap
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
 
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            Window window = getWindow();
-//            window.getDecorView().setSystemUiVisibility(
-//                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
-//                            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-//            window.setStatusBarColor(Color.TRANSPARENT);
-//        }
+        setStatusBarColor();
 
         arrayList = new ArrayList<>();
-        arrayList.add(new CharactersModel("C Ronaldo","Ronaldo",R.drawable.c_ronaldo));
+        arrayList.add(new CharactersModel("C Ronaldo","c_ronaldo",R.drawable.c_ronaldo));
         arrayList.add(new CharactersModel("Hashim Alma","Hashim Amla",R.drawable.hashim_amla));
         arrayList.add(new CharactersModel("Leo Messi","Messi",R.drawable.leo_messi));
         arrayList.add(new CharactersModel("Spider Man","Spider Man",R.drawable.spider_man));
 
-        vcAdapter = new VCAdapter(this,arrayList,this);
+        vcAdapter = new VCAdapter(this,arrayList,this,false);
         binding.rvVideoCall.setAdapter(vcAdapter);
 
-        acAdapter = new ACAdapter(this,arrayList,this);
+        acAdapter = new ACAdapter(this,arrayList,this,false);
         binding.rvAudioCall.setAdapter(acAdapter);
 
-        chatCharacterAdapter  =  new ChatCharacterAdapter(this,arrayList,this);
+        chatCharacterAdapter  =  new ChatCharacterAdapter(this,arrayList,this,false);
         binding.rvChat.setAdapter(chatCharacterAdapter);
 
         Locale locale;
@@ -96,11 +94,18 @@ public class MainActivity extends BaseActivity implements VCAdapter.click,ACAdap
 
         // Find views
         ImageView ivClose = dialogView.findViewById(R.id.ivClose);
+        TextView tvLanguages = dialogView.findViewById(R.id.tvLanguages);
+
 //        ImageView ivVibration = dialogView.findViewById(R.id.ivVibation);
 //        ImageView ivFlash = dialogView.findViewById(R.id.ivFlash);
 //        TextView tvLanguage = dialogView.findViewById(R.id.tvLanguage);
 //        TextView tvRateUs = dialogView.findViewById(R.id.tvRateUs);
 //        ImageView ivCross = dialogView.findViewById(R.id.ivCross);
+
+        tvLanguages.setOnClickListener(v -> {
+            startActivity(new Intent(context,Languages.class));
+            ratingAlertDialog.dismiss();
+        });
 
         boolean volume = SharedHelper.getBoolean(this, "volume_off", false);
         boolean vibration = SharedHelper.getBoolean(this, "vibration_off", false);
@@ -189,7 +194,7 @@ public class MainActivity extends BaseActivity implements VCAdapter.click,ACAdap
 
     @Override
     public void onItemClick(CharactersModel charactersModel) {
-
+        startActivity(new Intent(this, IncomingCall.class).putExtra("character_name",charactersModel.getCode()));
     }
 
     @Override
@@ -199,13 +204,21 @@ public class MainActivity extends BaseActivity implements VCAdapter.click,ACAdap
 
     @Override
     public void onCharacterClick(CharactersModel charactersModel) {
-
+        startActivity(new Intent(this, Chat.class).putExtra("character_name",charactersModel.getCode()).putExtra("character_image",charactersModel.getImage()));
     }
 
     @Override
     public void onClick(View v) {
         switch(v.getId()){
-
+            case R.id.lMoreVCharacters:
+                startActivity(new Intent(this, VideoCharacters.class));
+                break;
+            case R.id.lMoreACharacters:
+                startActivity(new Intent(this, AudioCharacters.class));
+                break;
+            case R.id.lMoreCCharacters:
+                startActivity(new Intent(this, ChatCharacters.class));
+                break;
         }
     }
 }

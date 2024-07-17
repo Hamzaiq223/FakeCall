@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <uses-feature android:name="android.hardware.camera.flash" />
     <uses-feature
@@ -23,13 +24,17 @@
         android:theme="@style/Theme.FakeCall"
         tools:targetApi="31">
         <activity
-            android:name=".Activities.ChatCharacters.ChatCharacters"
+            android:name=".Activities.AudioCharacters.AudioCharacters"
             android:theme="@style/Theme.Design.Light.NoActionBar"
             android:exported="false" />
         <activity
+            android:name=".Activities.ChatCharacters.ChatCharacters"
+            android:exported="false"
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
+        <activity
             android:name=".Activities.Splash.Splash"
-            android:theme="@style/Theme.Design.Light.NoActionBar"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Design.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,8 +43,8 @@
         </activity>
         <activity
             android:name=".Activities.Languages.Languages"
-            android:theme="@style/Theme.Design.Light.NoActionBar"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Design.Light.NoActionBar">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -50,12 +55,12 @@
         </activity>
         <activity
             android:name=".Activities.VideoCharacters.VideoCharacters"
-            android:theme="@style/Theme.Design.Light.NoActionBar"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity
             android:name=".Activities.AudioCall.AudioCall"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
             android:name=".Activities.Chat.Chat"
             android:exported="true"
@@ -70,8 +75,8 @@
             android:theme="@style/Theme.Design.NoActionBar" />
         <activity
             android:name=".Activities.MainActivity.MainActivity"
-            android:theme="@style/Theme.Design.Light.NoActionBar"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/Theme.Design.Light.NoActionBar">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->

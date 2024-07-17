@@ -23,10 +23,13 @@ public class ChatCharacterAdapter extends RecyclerView.Adapter<ChatCharacterAdap
     private final List<CharactersModel> itemList;
     click click;
 
-    public ChatCharacterAdapter(Context context, List<CharactersModel> itemList,click click1) {
+    private boolean fromMain;
+
+    public ChatCharacterAdapter(Context context, List<CharactersModel> itemList,click click1,boolean fromMain) {
         this.context = context;
         this.itemList = itemList;
         this.click = click1;
+        this.fromMain = fromMain;
     }
 
     @NonNull
@@ -40,6 +43,8 @@ public class ChatCharacterAdapter extends RecyclerView.Adapter<ChatCharacterAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.userImage.setImageResource(itemList.get(position).getImage());
         holder.userName.setText(itemList.get(position).getName());
+
+        holder.userName.setVisibility(fromMain ? View.VISIBLE : View.GONE);
 
         holder.clCharacter.setOnClickListener(view -> {
             click.onCharacterClick(itemList.get(position));

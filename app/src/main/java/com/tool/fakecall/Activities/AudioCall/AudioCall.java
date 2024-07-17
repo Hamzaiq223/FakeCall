@@ -31,7 +31,7 @@ public class AudioCall extends BaseActivity {
     FirebaseStorage storage;
     StorageReference storageRef;
     ActivityAudioCallBinding binding;
-    // Define a boolean flag to track whether audio is currently playing
+
     private boolean isAudioPlaying = false;
 
     @Override

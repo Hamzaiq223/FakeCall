@@ -24,10 +24,13 @@ public class ACAdapter extends RecyclerView.Adapter<ACAdapter.ViewHolder> {
     private final List<CharactersModel> itemList;
     click click;
 
-    public ACAdapter(Context context, List<CharactersModel> itemList,click click1) {
+    private  boolean fromMain;
+
+    public ACAdapter(Context context, List<CharactersModel> itemList,click click1, boolean fromMain) {
         this.context = context;
         this.itemList = itemList;
         this.click = click1;
+        this.fromMain = fromMain;
     }
 
     @NonNull
@@ -41,6 +44,8 @@ public class ACAdapter extends RecyclerView.Adapter<ACAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.userImage.setImageResource(itemList.get(position).getImage());
         holder.userName.setText(itemList.get(position).getName());
+
+        holder.userName.setVisibility(fromMain ? View.VISIBLE : View.GONE);
 
         holder.clCharacter.setOnClickListener(view -> {
             click.onClick(itemList.get(position));

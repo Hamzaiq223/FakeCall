@@ -25,10 +25,13 @@ public class VCAdapter extends RecyclerView.Adapter<VCAdapter.ViewHolder> {
     private final List<CharactersModel> itemList;
     click click;
 
-    public VCAdapter(Context context, List<CharactersModel> itemList,click click1) {
+    private boolean fromMain;
+
+    public VCAdapter(Context context, List<CharactersModel> itemList,click click1,boolean fromMain) {
         this.context = context;
         this.itemList = itemList;
         this.click = click1;
+        this.fromMain = fromMain;
     }
 
     @NonNull
@@ -42,6 +45,8 @@ public class VCAdapter extends RecyclerView.Adapter<VCAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.userImage.setImageResource(itemList.get(position).getImage());
         holder.userName.setText(itemList.get(position).getName());
+
+        holder.userName.setVisibility(fromMain ? View.VISIBLE : View.GONE);
 
         holder.clCharacter.setOnClickListener(view -> {
             click.onItemClick(itemList.get(position));

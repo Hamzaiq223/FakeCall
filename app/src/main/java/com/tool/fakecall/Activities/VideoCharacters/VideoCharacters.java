@@ -1,44 +1,32 @@
 package com.tool.fakecall.Activities.VideoCharacters;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
-import com.tool.fakecall.Activities.MainActivity.MainActivity;
-import com.tool.fakecall.Adapter.VideoCharacterAdapter;
+import com.tool.fakecall.Adapter.VCAdapter;
 import com.tool.fakecall.Base.BaseActivity;
 import com.tool.fakecall.Models.CharactersModel;
-import com.tool.fakecall.Models.QuestionsModel;
 import com.tool.fakecall.R;
 import com.tool.fakecall.databinding.ActivityVideoCharactersBinding;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Locale;
 
-public class VideoCharacters extends BaseActivity implements VideoCharacterAdapter.click {
+public class VideoCharacters extends BaseActivity implements VCAdapter.click, View.OnClickListener {
 
     ActivityVideoCharactersBinding binding;
     ArrayList<CharactersModel> arrayList;
-    VideoCharacterAdapter videoCharacterAdapter;
+    VCAdapter videoCharacterAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_video_characters);
+
+        setStatusBarColor();
 
         arrayList = new ArrayList<>();
         arrayList.add(new CharactersModel("C Ronaldo","Ronaldo",R.drawable.c_ronaldo));
@@ -46,7 +34,7 @@ public class VideoCharacters extends BaseActivity implements VideoCharacterAdapt
         arrayList.add(new CharactersModel("Leo Messi","Leo Messi",R.drawable.leo_messi));
         arrayList.add(new CharactersModel("Leo Messi","Leo Messi",R.drawable.leo_messi));
 
-        videoCharacterAdapter = new VideoCharacterAdapter(this,arrayList,this::onItemClick);
+        videoCharacterAdapter = new VCAdapter(this,arrayList,this::onItemClick,true);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,3);
         binding.rvCharacters.setLayoutManager(gridLayoutManager);
         binding.rvCharacters.setAdapter(videoCharacterAdapter);
@@ -58,4 +46,13 @@ public class VideoCharacters extends BaseActivity implements VideoCharacterAdapt
         Toast.makeText(this, ""+charactersModel.getName(), Toast.LENGTH_SHORT).show();
     }
 
-   }
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.ivBack:
+                finish();
+                break;
+
+        }
+    }
+}

@@ -32,6 +32,7 @@ public class ChatCharacters extends BaseActivity implements ChatCharacterAdapter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_characters);
 
+        setStatusBarColor();
 
         binding = DataBindingUtil.setContentView(this,R.layout.activity_chat_characters);
 
@@ -45,7 +46,7 @@ public class ChatCharacters extends BaseActivity implements ChatCharacterAdapter
         arrayList.add(new CharactersModel("Beiber","Beiber",R.drawable.justin_beiber));
         arrayList.add(new CharactersModel("Harry Potter","Harry",R.drawable.harry_potter));
 
-        chatCharacterAdapter  =  new ChatCharacterAdapter(this,arrayList,this);
+        chatCharacterAdapter  =  new ChatCharacterAdapter(this,arrayList,this,true);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,3);
         binding.rvChatCharacters.setLayoutManager(gridLayoutManager);
         binding.rvChatCharacters.setAdapter(chatCharacterAdapter);

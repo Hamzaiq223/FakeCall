@@ -3,6 +3,7 @@ package com.tool.fakecall.Common;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 
+import com.tool.fakecall.Models.CharactersModel;
 import com.tool.fakecall.R;
 
 import java.util.HashMap;
@@ -16,8 +17,11 @@ public class CharacterImageHelper {
     private static void initializeCharacterImagesMap() {
         characterImagesMap = new HashMap<>();
         // Add character names and their corresponding resource IDs here
-        characterImagesMap.put("c_ronaldo", R.drawable.c_ronaldo); // Replace character1 with your actual drawable name
-        characterImagesMap.put("harry_potter", R.drawable.harry_potter); // Replace character2 with your actual drawable name
+        characterImagesMap.put("c_ronaldo", R.drawable.c_ronaldo);
+        characterImagesMap.put("harry_potter", R.drawable.harry_potter);
+        characterImagesMap.put("Hashim Amla",R.drawable.hashim_amla);
+        characterImagesMap.put("Messi",R.drawable.leo_messi);
+        characterImagesMap.put("Spider Man",R.drawable.spider_man);
         // Add more mappings for other characters as needed
     }
 
