@@ -35,22 +35,21 @@ public class Languages extends BaseActivity implements LanguagesAdapter.click {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_languages);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_languages);
 
-        arrayList.add(new LanguageModel("English",R.drawable.uk_flag));
-        arrayList.add(new LanguageModel("Urdu",R.drawable.pakistan));
-        arrayList.add(new LanguageModel("Espanol",R.drawable.spain_flag));
-        arrayList.add(new LanguageModel("Hindi",R.drawable.india));
+        arrayList.add(new LanguageModel("English", R.drawable.uk_flag));
+        arrayList.add(new LanguageModel("Urdu", R.drawable.pakistan));
+        arrayList.add(new LanguageModel("Espanol", R.drawable.spain_flag));
+        arrayList.add(new LanguageModel("Hindi", R.drawable.india));
 
+        String savedLanguage = SharedHelper.getString(this, "language", "English");
 
-        languagesAdapter = new LanguagesAdapter(this,arrayList,this);
+        languagesAdapter = new LanguagesAdapter(this, arrayList, this, savedLanguage);
         binding.rvLanguages.setAdapter(languagesAdapter);
 
         binding.etSearch.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -58,20 +57,17 @@ public class Languages extends BaseActivity implements LanguagesAdapter.click {
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
+            public void afterTextChanged(Editable editable) {}
         });
-
     }
 
     @Override
     public void onLanguageClick(String language) {
-        changeLanguage(Languages.this,language);
-        SharedHelper.saveString(this,"language",language);
+        changeLanguage(Languages.this, language);
+        SharedHelper.saveString(this, "language", language);
     }
 
-    public void changeLanguage(Context context, String language){
+    public void changeLanguage(Context context, String language) {
         Locale locale;
         switch (language) {
             case "French":
@@ -83,7 +79,6 @@ public class Languages extends BaseActivity implements LanguagesAdapter.click {
             case "Espanol":
                 locale = new Locale("es");
                 break;
-
             // Add cases for other languages
             default:
                 locale = new Locale("en");
@@ -101,5 +96,4 @@ public class Languages extends BaseActivity implements LanguagesAdapter.click {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);
     }
-
 }

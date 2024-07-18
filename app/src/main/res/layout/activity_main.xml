@@ -15,7 +15,7 @@
         android:layout_height="50dp"
         android:padding="10dp"
         android:src="@drawable/setting"
-
+        android:layout_marginHorizontal="10dp"
         android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

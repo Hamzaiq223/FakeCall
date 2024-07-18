@@ -4,39 +4,31 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.tool.fakecall.Activities.Languages.Languages;
 import com.tool.fakecall.Models.LanguageModel;
 import com.tool.fakecall.R;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LanguagesAdapter extends RecyclerView.Adapter<LanguagesAdapter.ViewHolder>  {
+public class LanguagesAdapter extends RecyclerView.Adapter<LanguagesAdapter.ViewHolder> {
 
-    private final Context context;
-    private  ArrayList<LanguageModel> list;
-    private ArrayList<LanguageModel> filteredLanguageList;
-    private int selectedItem = RecyclerView.NO_POSITION;
-    click click;
+    private Context context;
+    private List<LanguageModel> languageList;
+    private List<LanguageModel> originalLanguageList;
+    private click listener;
+    private String selectedLanguage;
 
-    public LanguagesAdapter(Context context, ArrayList<LanguageModel> list, click click) {
+    public LanguagesAdapter(Context context, List<LanguageModel> languageList, click listener, String selectedLanguage) {
         this.context = context;
-        this.list = list;
-        this.filteredLanguageList = new ArrayList<>(list);
-        this.click = click;
-
+        this.languageList = new ArrayList<>(languageList);
+        this.originalLanguageList = new ArrayList<>(languageList);
+        this.listener = listener;
+        this.selectedLanguage = selectedLanguage;
     }
 
     @NonNull
@@ -48,61 +40,54 @@ public class LanguagesAdapter extends RecyclerView.Adapter<LanguagesAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        LanguageModel language = languageList.get(position);
+        holder.languageName.setText(language.getName());
+        holder.languageFlag.setImageResource(language.getImage());
 
-        holder.tvLanguage.setText(filteredLanguageList.get(position).getName());
-        holder.ivFlag.setImageResource(filteredLanguageList.get(position).getImage());
-
-        // Set the selected state of radio button based on the position
-        holder.rbLanguage.setChecked(position == selectedItem);
-
-        holder.rbLanguage.setOnClickListener(v -> {
-            selectedItem = holder.getAdapterPosition();
-            notifyDataSetChanged(); // Update UI to reflect the changes
-        });
-
-        holder.cvLanguage.setOnClickListener(view -> {
-            holder.rbLanguage.setChecked(position == selectedItem);
-            click.onLanguageClick(filteredLanguageList.get(position).getName());
+        holder.languageCheckBox.setChecked(language.getName().equals(selectedLanguage));
+        holder.itemView.setOnClickListener(v -> {
+            listener.onLanguageClick(language.getName());
+            selectedLanguage = language.getName();
+            notifyDataSetChanged();
         });
     }
 
     @Override
     public int getItemCount() {
-        return filteredLanguageList.size();
+        return languageList.size();
     }
 
     public void filter(String text) {
-        filteredLanguageList.clear();
         if (text.isEmpty()) {
-            filteredLanguageList.addAll(list);
+            languageList.clear();
+            languageList.addAll(originalLanguageList);
         } else {
-            for (LanguageModel language : list) {
-                if (language.getName().toLowerCase().contains(text.toLowerCase())) {
-                    filteredLanguageList.add(language);
+            List<LanguageModel> filteredList = new ArrayList<>();
+            for (LanguageModel item : originalLanguageList) {
+                if (item.getName().toLowerCase().contains(text.toLowerCase())) {
+                    filteredList.add(item);
                 }
             }
+            languageList.clear();
+            languageList.addAll(filteredList);
         }
         notifyDataSetChanged();
     }
 
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvLanguage;
-        RadioButton rbLanguage;
-        ImageView ivFlag;
-        CardView cvLanguage;
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView languageName;
+        ImageView languageFlag;
+        RadioButton languageCheckBox;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ivFlag = itemView.findViewById(R.id.ivCountryFlag);
-            rbLanguage = itemView.findViewById(R.id.rbLanguage);
-            tvLanguage = itemView.findViewById(R.id.tvLanguage);
-            cvLanguage = itemView.findViewById(R.id.cvLanguage);
+            languageName = itemView.findViewById(R.id.tvLanguage);
+            languageFlag = itemView.findViewById(R.id.ivCountryFlag);
+            languageCheckBox = itemView.findViewById(R.id.rbLanguage);
         }
     }
 
-    public interface click{
+    public interface click {
         void onLanguageClick(String language);
     }
-
 }
