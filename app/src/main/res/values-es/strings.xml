@@ -10,4 +10,14 @@
     <string name="see_more">Ver más</string>
     <string name="fake_call">Llamada falsa</string>
     <string name="search">Buscar</string>
+    <string name="fake_chat">Chat Falso</string>
+    <string name="return_">Regresar</string>
+    <string name="settings">Configuración</string>
+    <string name="sound">Sonido</string>
+    <string name="vibration">Vibración</string>
+    <string name="flash">Flash</string>
+    <string name="languages">Idiomas</string>
+    <string name="rate">Calificar</string>
+    <string name="call_ended">Llamada Terminada</string>
+
 </resources>

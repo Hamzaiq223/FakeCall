@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">가짜 통화</string>
+    <string name="name">해리 포터</string>
+    <string name="incoming_video_call">수신 중인 비디오 통화....</string>
+    <string name="decline">거절</string>
+    <string name="accept">수락</string>
+    <string name="fake_video_call">가짜 비디오 통화</string>
+    <string name="fake_message">가짜 메시지</string>
+    <string name="see_more">더 보기</string>
+    <string name="fake_call">가짜 통화</string>
+    <string name="search">검색</string>
+    <string name="fake_chat">가짜 채팅</string>
+    <string name="return_">돌아가기</string>
+    <string name="settings">설정</string>
+    <string name="sound">소리</string>
+    <string name="vibration">진동</string>
+    <string name="flash">플래시</string>
+    <string name="languages">언어</string>
+    <string name="rate">평가</string>
+    <string name="call_ended">통화 종료</string>
+</resources>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Väärennetty Puhelu</string>
+    <string name="name">Harry Potter</string>
+    <string name="incoming_video_call">Saapuva Videopuhelu....</string>
+    <string name="decline">Hylkää</string>
+    <string name="accept">Hyväksy</string>
+    <string name="fake_video_call">Väärennetty Videopuhelu</string>
+    <string name="fake_message">Väärennetty Viesti</string>
+    <string name="see_more">Näytä lisää</string>
+    <string name="fake_call">Väärennetty Puhelu</string>
+    <string name="search">Haku</string>
+    <string name="fake_chat">Väärennetty Chat</string>
+    <string name="return_">Palaa</string>
+    <string name="settings">Asetukset</string>
+    <string name="sound">Ääni</string>
+    <string name="vibration">Värinä</string>
+    <string name="flash">Salama</string>
+    <string name="languages">Kielet</string>
+    <string name="rate">Arvostele</string>
+    <string name="call_ended">Puhelu Päättynyt</string>
+</resources>

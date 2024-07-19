@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">مكالمة وهمية</string>
+    <string name="name">هاري بوتر</string>
+    <string name="incoming_video_call">مكالمة فيديو واردة....</string>
+    <string name="decline">رفض</string>
+    <string name="accept">قبول</string>
+    <string name="fake_video_call">مكالمة فيديو وهمية</string>
+    <string name="fake_message">رسالة وهمية</string>
+    <string name="see_more">عرض المزيد</string>
+    <string name="fake_call">مكالمة وهمية</string>
+    <string name="search">بحث</string>
+    <string name="fake_chat">الدردشة الوهمية</string>
+    <string name="return_">عودة</string>
+    <string name="settings">الإعدادات</string>
+    <string name="sound">الصوت</string>
+    <string name="vibration">الاهتزاز</string>
+    <string name="flash">فلاش</string>
+    <string name="languages">اللغات</string>
+    <string name="rate">تقييم</string>
+    <string name="call_ended">انتهت المكالمة</string>
+</resources>

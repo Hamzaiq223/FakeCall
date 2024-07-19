@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Chamada Falsa</string>
+    <string name="name">Harry Potter</string>
+    <string name="incoming_video_call">Chamada de Vídeo Entrante....</string>
+    <string name="decline">Recusar</string>
+    <string name="accept">Aceitar</string>
+    <string name="fake_video_call">Chamada de Vídeo Falsa</string>
+    <string name="fake_message">Mensagem Falsa</string>
+    <string name="see_more">Ver mais</string>
+    <string name="fake_call">Chamada Falsa</string>
+    <string name="search">Pesquisar</string>
+    <string name="fake_chat">Chat Falso</string>
+    <string name="return_">Voltar</string>
+    <string name="settings">Configurações</string>
+    <string name="sound">Som</string>
+    <string name="vibration">Vibração</string>
+    <string name="flash">Flash</string>
+    <string name="languages">Idiomas</string>
+    <string name="rate">Avaliar</string>
+    <string name="call_ended">Chamada Encerrada</string>
+</resources>

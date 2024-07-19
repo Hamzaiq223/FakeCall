@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kira Na Karya</string>
+    <string name="name">Harry Potter</string>
+    <string name="incoming_video_call">Kiran Bidiyo Mai Shigowa....</string>
+    <string name="decline">Ki Yarda</string>
+    <string name="accept">Yarda</string>
+    <string name="fake_video_call">Kiran Bidiyo Na Karya</string>
+    <string name="fake_message">Saƙon Karya</string>
+    <string name="see_more">Kara Dubawa</string>
+    <string name="fake_call">Kira Na Karya</string>
+    <string name="search">Nema</string>
+    <string name="fake_chat">Tattaunawar Karya</string>
+    <string name="return_">Komawa</string>
+    <string name="settings">Saituna</string>
+    <string name="sound">Sauti</string>
+    <string name="vibration">Girgidawa</string>
+    <string name="flash">Haske</string>
+    <string name="languages">Harsuna</string>
+    <string name="rate">Kimanta</string>
+    <string name="call_ended">Kiran Ya Kare</string>
+</resources>

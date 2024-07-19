@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Glao Bréige</string>
+    <string name="name">Harry Potter</string>
+    <string name="incoming_video_call">Glao Físeáin ag Teacht Isteach....</string>
+    <string name="decline">Diúltaigh</string>
+    <string name="accept">Glac</string>
+    <string name="fake_video_call">Glao Físeáin Bréige</string>
+    <string name="fake_message">Teachtaireacht Bréige</string>
+    <string name="see_more">Tuilleadh a Fheiceáil</string>
+    <string name="fake_call">Glao Bréige</string>
+    <string name="search">Cuardach</string>
+    <string name="fake_chat">Comhrá Bréige</string>
+    <string name="return_">Fill ar Ais</string>
+    <string name="settings">Socruithe</string>
+    <string name="sound">Fuaim</string>
+    <string name="vibration">Creathadh</string>
+    <string name="flash">Splanc</string>
+    <string name="languages">Teangacha</string>
+    <string name="rate">Ráta</string>
+    <string name="call_ended">Glao Críochnaithe</string>
+</resources>

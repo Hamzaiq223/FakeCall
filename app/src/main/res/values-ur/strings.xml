@@ -10,5 +10,13 @@
     <string name="see_more">مزید دیکھیں</string>
     <string name="fake_call">جعلی کال</string>
     <string name="search">تلاش کریں</string>
-
+    <string name="fake_chat">جعلی چیٹ</string>
+    <string name="return_">واپسی</string>
+    <string name="settings">ترتیبات</string>
+    <string name="sound">آواز</string>
+    <string name="vibration">کمپن</string>
+    <string name="flash">فلیش</string>
+    <string name="languages">زبانیں</string>
+    <string name="rate">درجہ بندی</string>
+    <string name="call_ended">کال ختم</string>
 </resources>

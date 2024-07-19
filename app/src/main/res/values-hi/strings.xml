@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string name="app_name">फेक कॉल</string>
+    <string name="name">हैरी पॉटर</string>
+    <string name="incoming_video_call">आने वाली वीडियो कॉल....</string>
+    <string name="decline">अस्वीकार</string>
+    <string name="accept">स्वीकार</string>
+    <string name="fake_video_call">फेक वीडियो कॉल</string>
+    <string name="fake_message">फेक संदेश</string>
+    <string name="see_more">और देखें</string>
+    <string name="fake_call">फेक कॉल</string>
+    <string name="search">खोजें</string>
+    <string name="fake_chat">फेक चैट</string>
+    <string name="return_">वापस</string>
+    <string name="settings">सेटिंग्स</string>
+    <string name="sound">ध्वनि</string>
+    <string name="vibration">कंपन</string>
+    <string name="flash">फ्लैश</string>
+    <string name="languages">भाषाएँ</string>
+    <string name="rate">मूल्यांकन</string>
+    <string name="call_ended">कॉल समाप्त</string>
 </resources>
