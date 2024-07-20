@@ -44,7 +44,12 @@ public class LanguagesAdapter extends RecyclerView.Adapter<LanguagesAdapter.View
         holder.languageName.setText(language.getName());
         holder.languageFlag.setImageResource(language.getImage());
 
-        holder.languageCheckBox.setChecked(language.getName().equals(selectedLanguage));
+        if (language.getName().equals(selectedLanguage)) {
+            holder.ivTick.setVisibility(View.VISIBLE);
+        } else {
+            holder.ivTick.setVisibility(View.GONE);
+        }
+
         holder.itemView.setOnClickListener(v -> {
             listener.onLanguageClick(language.getName());
             selectedLanguage = language.getName();
@@ -76,14 +81,14 @@ public class LanguagesAdapter extends RecyclerView.Adapter<LanguagesAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView languageName;
-        ImageView languageFlag;
-        RadioButton languageCheckBox;
+        ImageView languageFlag,ivTick;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             languageName = itemView.findViewById(R.id.tvLanguage);
             languageFlag = itemView.findViewById(R.id.ivCountryFlag);
-            languageCheckBox = itemView.findViewById(R.id.rbLanguage);
+            ivTick = itemView.findViewById(R.id.ivTick);
         }
     }
 
