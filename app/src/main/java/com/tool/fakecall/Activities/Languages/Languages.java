@@ -37,9 +37,24 @@ public class Languages extends BaseActivity implements LanguagesAdapter.click {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_languages);
 
-        arrayList.add(new LanguageModel("English", R.drawable.uk_flag));
+        setStatusBarColor();
+
+        arrayList.add(new LanguageModel("Arabic", R.drawable.qatar_flag));
         arrayList.add(new LanguageModel("Urdu", R.drawable.pakistan));
+        arrayList.add(new LanguageModel("English", R.drawable.uk_flag));
         arrayList.add(new LanguageModel("Espanol", R.drawable.spain_flag));
+        arrayList.add(new LanguageModel("German", R.drawable.german_flag));
+        arrayList.add(new LanguageModel("Hausa", R.drawable.nigerian_flag));
+        arrayList.add(new LanguageModel("Turkish", R.drawable.turkey_flag));
+        arrayList.add(new LanguageModel("Indonesian", R.drawable.indonesian_flag));
+        arrayList.add(new LanguageModel("Korean", R.drawable.korean_flag));
+        arrayList.add(new LanguageModel("Japanese", R.drawable.japnese_flag));
+        arrayList.add(new LanguageModel("Russian", R.drawable.russian_flag));
+        arrayList.add(new LanguageModel("Irish", R.drawable.ireland_flag));
+        arrayList.add(new LanguageModel("Finish", R.drawable.finish_flag));
+        arrayList.add(new LanguageModel("Afrikaans", R.drawable.afrikan_flag));
+        arrayList.add(new LanguageModel("Chinese", R.drawable.china_flag));
+        arrayList.add(new LanguageModel("Portuguese", R.drawable.portuguese_flag));
         arrayList.add(new LanguageModel("Hindi", R.drawable.india));
 
         String savedLanguage = SharedHelper.getString(this, "language", "English");
@@ -70,14 +85,56 @@ public class Languages extends BaseActivity implements LanguagesAdapter.click {
     public void changeLanguage(Context context, String language) {
         Locale locale;
         switch (language) {
-            case "French":
-                locale = new Locale("fr");
-                break;
             case "Urdu":
                 locale = new Locale("ur");
                 break;
             case "Espanol":
                 locale = new Locale("es");
+                break;
+            case "Turkish":
+                locale = new Locale("tr");
+                break;
+            case "Russian":
+                locale = new Locale("ru");
+                break;
+            case "Portuguese":
+                locale = new Locale("pt");
+                break;
+            case "Korean":
+                locale = new Locale("ko");
+                break;
+            case "Japanese":
+                locale = new Locale("ja");
+                break;
+            case "Italian":
+                locale = new Locale("it");
+                break;
+            case "Indonesian":
+                locale = new Locale("in");
+                break;
+            case "Hindi":
+                locale = new Locale("hi");
+                break;
+            case "Hausa":
+                locale = new Locale("ha");
+                break;
+            case "Irish":
+                locale = new Locale("ga");
+                break;
+            case "Finish":
+                locale = new Locale("fi");
+                break;
+            case "Arabic":
+                locale = new Locale("ar");
+                break;
+            case "Afrikaans":
+                locale = new Locale("af");
+                break;
+            case "German":
+                locale = new Locale("de");
+                break;
+            case "Chinese":
+                locale = new Locale("zh");
                 break;
             // Add cases for other languages
             default:

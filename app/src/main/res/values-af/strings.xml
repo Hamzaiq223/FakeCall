@@ -1,2 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">ValsOproep</string>
+    <string name="name">Harry Potter</string>
+    <string name="incoming_video_call">Inkomende Video Oproep...</string>
+    <string name="decline">Weier</string>
+    <string name="accept">Aanvaar</string>
+    <string name="fake_video_call">Vals Video Oproep</string>
+    <string name="fake_message">Vals Boodskap</string>
+    <string name="see_more">Sien meer</string>
+    <string name="fake_call">Vals Oproep</string>
+    <string name="search">Soek</string>
+    <string name="fake_chat">Vals Geselsie</string>
+    <string name="return_">Keer terug</string>
+    <string name="settings">Instellings</string>
+    <string name="sound">Klink</string>
+    <string name="vibration">Vibrasie</string>
+    <string name="flash">Flits</string>
+    <string name="languages">Tale</string>
+    <string name="rate">Evalueer</string>
+    <string name="call_ended">Oproep beëindig</string>
+</resources>

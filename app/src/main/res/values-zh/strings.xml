@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">假电话</string>
+    <string name="name">哈利·波特</string>
+    <string name="incoming_video_call">来电视频通话...</string>
+    <string name="decline">拒绝</string>
+    <string name="accept">接受</string>
+    <string name="fake_video_call">假视频通话</string>
+    <string name="fake_message">假消息</string>
+    <string name="see_more">查看更多</string>
+    <string name="fake_call">假电话</string>
+    <string name="search">搜索</string>
+    <string name="fake_chat">假聊天</string>
+    <string name="return_">返回</string>
+    <string name="settings">设置</string>
+    <string name="sound">声音</string>
+    <string name="vibration">震动</string>
+    <string name="flash">闪光</string>
+    <string name="languages">语言</string>
+    <string name="rate">评价</string>
+    <string name="call_ended">通话结束</string>
+</resources>

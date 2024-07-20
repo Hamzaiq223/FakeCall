@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FakeAnruf</string>
+    <string name="name">Harry Potter</string>
+    <string name="incoming_video_call">Eingehender Videoanruf...</string>
+    <string name="decline">Ablehnen</string>
+    <string name="accept">Annehmen</string>
+    <string name="fake_video_call">Falscher Videoanruf</string>
+    <string name="fake_message">Falsche Nachricht</string>
+    <string name="see_more">Mehr sehen</string>
+    <string name="fake_call">Falscher Anruf</string>
+    <string name="search">Suche</string>
+    <string name="fake_chat">Falscher Chat</string>
+    <string name="return_">Zurück</string>
+    <string name="settings">Einstellungen</string>
+    <string name="sound">Ton</string>
+    <string name="vibration">Vibration</string>
+    <string name="flash">Blitz</string>
+    <string name="languages">Sprachen</string>
+    <string name="rate">Bewerten</string>
+    <string name="call_ended">Anruf beendet</string>
+</resources>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ФальшивыйЗвонок</string>
+    <string name="name">Гарри Поттер</string>
+    <string name="incoming_video_call">Входящий видеозвонок...</string>
+    <string name="decline">Отклонить</string>
+    <string name="accept">Принять</string>
+    <string name="fake_video_call">Фальшивый видеозвонок</string>
+    <string name="fake_message">Фальшивое сообщение</string>
+    <string name="see_more">Смотреть еще</string>
+    <string name="fake_call">Фальшивый звонок</string>
+    <string name="search">Поиск</string>
+    <string name="fake_chat">Фальшивый чат</string>
+    <string name="return_">Вернуться</string>
+    <string name="settings">Настройки</string>
+    <string name="sound">Звук</string>
+    <string name="vibration">Вибрация</string>
+    <string name="flash">Вспышка</string>
+    <string name="languages">Языки</string>
+    <string name="rate">Оценить</string>
+    <string name="call_ended">Звонок завершен</string>
+</resources>

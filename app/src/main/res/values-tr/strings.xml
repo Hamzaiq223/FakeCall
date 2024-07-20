@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SahteArama</string>
+    <string name="name">Harry Potter</string>
+    <string name="incoming_video_call">Gelen Video Araması...</string>
+    <string name="decline">Reddet</string>
+    <string name="accept">Kabul Et</string>
+    <string name="fake_video_call">Sahte Video Araması</string>
+    <string name="fake_message">Sahte Mesaj</string>
+    <string name="see_more">Daha fazla gör</string>
+    <string name="fake_call">Sahte Arama</string>
+    <string name="search">Ara</string>
+    <string name="fake_chat">Sahte Sohbet</string>
+    <string name="return_">Geri Dön</string>
+    <string name="settings">Ayarlar</string>
+    <string name="sound">Ses</string>
+    <string name="vibration">Titreşim</string>
+    <string name="flash">Flaş</string>
+    <string name="languages">Diller</string>
+    <string name="rate">Değerlendir</string>
+    <string name="call_ended">Arama Sonlandırıldı</string>
+</resources>
