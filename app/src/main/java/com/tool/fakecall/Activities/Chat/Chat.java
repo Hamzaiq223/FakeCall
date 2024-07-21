@@ -123,6 +123,12 @@ public class Chat extends BaseActivity implements ChatAdapter.AnswerSetListener,
             binding.rvChat.scrollToPosition(lastItemPosition);
             binding.rvChat.smoothScrollToPosition(lastItemPosition);
             isAdded = false;
+
+            // Check if the questions list is empty and update UI
+            if (list.isEmpty()) {
+                binding.cvQuestions.setVisibility(View.INVISIBLE);
+                binding.btnReturn.setVisibility(View.VISIBLE);
+            }
         }
     }
 
@@ -155,6 +161,7 @@ public class Chat extends BaseActivity implements ChatAdapter.AnswerSetListener,
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.ivBack:
+            case R.id.btnReturn:
                 finish();
                 break;
         }

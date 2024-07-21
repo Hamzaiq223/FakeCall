@@ -58,7 +58,7 @@ public class MainActivity extends BaseActivity implements VCAdapter.click,ACAdap
         setStatusBarColor();
 
         arrayList = new ArrayList<>();
-        arrayList.add(new CharactersModel("C Ronaldo","c_ronaldo",R.drawable.c_ronaldo));
+        arrayList.add(new CharactersModel("C Ronaldo","Ronaldo",R.drawable.c_ronaldo));
         arrayList.add(new CharactersModel("Hashim Alma","Hashim Amla",R.drawable.hashim_amla));
         arrayList.add(new CharactersModel("Leo Messi","Messi",R.drawable.leo_messi));
         arrayList.add(new CharactersModel("Spider Man","Spider Man",R.drawable.spider_man));

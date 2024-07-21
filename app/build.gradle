@@ -50,4 +50,5 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.8'
     implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
     implementation "com.ncorti:slidetoact:0.11.0"
+//    implementation "com.google.android.gms:play-services-ads:23.2.0"
 }
