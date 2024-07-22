@@ -37,7 +37,7 @@ public class ChatCharacters extends BaseActivity implements ChatCharacterAdapter
         binding = DataBindingUtil.setContentView(this,R.layout.activity_chat_characters);
 
         arrayList = new ArrayList<>();
-        arrayList.add(new CharactersModel("C Ronaldo","Ronaldo",R.drawable.c_ronaldo));
+        arrayList.add(new CharactersModel("C Ronaldo","c_ronaldo",R.drawable.c_ronaldo));
         arrayList.add(new CharactersModel("Hashim Alma","Hashim Amla",R.drawable.hashim_amla));
         arrayList.add(new CharactersModel("Leo Messi","Messi",R.drawable.leo_messi));
         arrayList.add(new CharactersModel("Spider Man","Spider Man",R.drawable.spider_man));
