@@ -34,6 +34,7 @@ import com.tool.fakecall.Base.BaseActivity;
 import com.tool.fakecall.R;
 import com.tool.fakecall.databinding.ActivityVideoCallBinding;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
@@ -112,52 +113,71 @@ public class VideoCall extends BaseActivity {
         });
     }
 
-    private void playVideo(){
-        String folderName = "Ronaldo"; // Folder ka naam jo aapko play karna hai
+    private void playVideo() {
+        String folderName = "Ronaldo";
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        int lastPlayedVideoIndex = sharedPreferences.getInt("lastPlayedVideoIndex", -1); // Initialize with -1
+        int lastPlayedVideoIndex = sharedPreferences.getInt("lastPlayedVideoIndex", -1);
 
         StorageReference folderRef = storageRef.child(folderName);
 
         folderRef.listAll().addOnSuccessListener(listResult -> {
-            // Get the list of items (videos) in the folder
             List<StorageReference> videoRefs = listResult.getItems();
 
-            // Check if there are videos in the folder
-            if (!videoRefs.isEmpty()) {
-                // Calculate the index of the next video to play
-                int nextVideoIndex = (lastPlayedVideoIndex + 1) % videoRefs.size();
+            // Filter out non-video files
+            List<StorageReference> filteredVideoRefs = new ArrayList<>();
+            for (StorageReference ref : videoRefs) {
+                String fileName = ref.getName().toLowerCase();
+                if (fileName.endsWith(".mp4") || fileName.endsWith(".avi") || fileName.endsWith(".mkv")) {
+                    filteredVideoRefs.add(ref);
+                }
+            }
 
-                // Get the reference of the next video to play
-                StorageReference nextVideoRef = videoRefs.get(nextVideoIndex);
+            if (!filteredVideoRefs.isEmpty()) {
+                int nextVideoIndex = (lastPlayedVideoIndex + 1) % filteredVideoRefs.size();
+                StorageReference nextVideoRef = filteredVideoRefs.get(nextVideoIndex);
 
                 nextVideoRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                    String videoUrl = uri.toString();
-
-                    // Play the next video
+                    videoUrl = uri.toString();
+                    Log.d(TAG, "Playing video URL: " + videoUrl);
                     videoCallBinding.videoView.setVideoURI(Uri.parse(videoUrl));
-                    hideLoader();
-                    videoCallBinding.videoView.start();
+                    videoCallBinding.videoView.setOnPreparedListener(mp -> {
+                        hideLoader();
+                        videoCallBinding.videoView.start();
+                        playVideoForAMinute();
+                    });
+                    videoCallBinding.videoView.setOnErrorListener((mp, what, extra) -> {
+                        Log.e(TAG, "Error playing video: " + what + ", " + extra);
+                        return true;
+                    });
 
-                    // Update the index of the last played video
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putInt("lastPlayedVideoIndex", nextVideoIndex);
                     editor.apply();
                 }).addOnFailureListener(e -> {
-                    // Handle error
+                    Log.e(TAG, "Failed to get download URL", e);
                 });
+            } else {
+                Log.e(TAG, "No video files found in the folder");
+                hideLoader();
             }
         }).addOnFailureListener(e -> {
-            // Handle error
-        });
-
-
-        new Handler().postDelayed(() -> {
-            // Hide the progress bar after some delay (simulating the end of background work)
+            Log.e(TAG, "Failed to list folder contents", e);
             hideLoader();
-        }, 2000); // Adjust the delay as per your requirement
-
+        });
     }
+
+
+
+
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopBackgroundThread();
+        videoCallBinding.videoView.stopPlayback();
+    }
+
 
     private void showLoader() {
         videoCallBinding.progressBar.setVisibility(View.VISIBLE);
@@ -170,11 +190,10 @@ public class VideoCall extends BaseActivity {
     private void playVideoForAMinute() {
         new CountDownTimer(60000, 1000) { // 60000 milliseconds (1 minute), 1000 milliseconds interval
             public void onTick(long millisUntilFinished) {
-                // Yahan pe kuchh nahi karna, agar aap chahte hain toh timer countdown dikha sakte hain
+
             }
 
             public void onFinish() {
-                // Timer khatam hone par video playback ko stop karo
                 videoCallBinding.videoView.stopPlayback();
             }
         }.start();
@@ -303,11 +322,7 @@ public class VideoCall extends BaseActivity {
 
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        stopBackgroundThread();
-    }
+
 
     private void startBackgroundThread() {
         backgroundThread = new HandlerThread("Camera Background");
